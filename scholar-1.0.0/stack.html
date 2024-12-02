@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Stack Animation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f8f9fa;
+            transition: height 0.3s ease;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #stack-container {
+            width: 120px;
+            border: 2px solid #333;
+            background-color: #e9ecef;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .stack-element {
+            width: 100%;
+            height: 50px;
+            background-color: #dee2e6;
+            color: #37ff00;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            left: 0;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: all 0.5s ease;
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 5px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .arrow {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .arrow-up {
+            transform: rotate(90deg);
+        }
+
+        .arrow-down {
+            transform: rotate(270deg);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Dynamic Stack Animation</h1>
+
+    <div>
+        <label for="stack-size">Set Stack Size:</label>
+        <input type="number" id="stack-size" placeholder="Enter stack size" />
+        <button onclick="setStackSize()">Set</button>
+    </div>
+
+    <div id="stack-container"></div>
+
+    <div class="controls">
+        <input type="number" id="element-value" placeholder="Enter a number" />
+        <button onclick="push()">Push</button>
+        <button onclick="pop()">Pop</button>
+    </div>
+
+    <div id="popup" class="popup"></div>
+
+    <script>
+        const stackContainer = document.getElementById("stack-container");
+        const popup = document.getElementById("popup");
+        let stack = [];
+        let stackSize = 0;
+        let currentIndex = 0; // Track current top index in the stack
+        const elementHeight = 50;
+
+        // Set stack size
+        function setStackSize() {
+            const sizeInput = document.getElementById("stack-size");
+            const size = parseInt(sizeInput.value.trim(), 10);
+
+            if (isNaN(size) || size <= 0) {
+                alert("Please enter a valid stack size!");
+                return;
+            }
+
+            stackSize = size;
+            stackContainer.style.height = `${stackSize * elementHeight}px`;
+            document.body.style.height = `${(stackSize * elementHeight) + 300}px`;
+
+            stack = [];
+            currentIndex = 0; // Reset the stack index
+            stackContainer.innerHTML = "";
+
+            // Create empty boxes
+            for (let i = 0; i < stackSize; i++) {
+                const emptyElement = document.createElement("div");
+                emptyElement.classList.add("stack-element");
+                emptyElement.style.bottom = `${i * elementHeight}px`;
+                emptyElement.textContent = ""; // Initially empty
+                stack.push(emptyElement);
+                stackContainer.appendChild(emptyElement);
+            }
+
+            sizeInput.value = "";
+            showPopup("Stack size set!");
+        }
+
+        // Push operation
+        function push() {
+            const input = document.getElementById("element-value");
+            const value = input.value.trim();
+
+            if (value === "") {
+                alert("Please enter a number!");
+                return;
+            }
+
+            if (currentIndex >= stackSize) {
+                showPopup("Stack Overflow!");
+                return;
+            }
+
+            // Push the element into the stack
+            stack[currentIndex].textContent = value;
+            stack[currentIndex].style.backgroundColor = "#007bff";
+            stack[currentIndex].style.color = "#fff";
+
+            // Add arrow animation for push
+            const arrow = document.createElement("span");
+            arrow.classList.add("arrow", "arrow-up");
+            stack[currentIndex].appendChild(arrow);
+
+            // Remove the arrow after animation
+            setTimeout(() => {
+                arrow.style.transform = "rotate(0deg)";
+                setTimeout(() => {
+                    arrow.remove();
+                }, 500);
+            }, 500);
+
+            currentIndex++; // Increment index after push
+            input.value = "";
+            showPopup(`Element ${value} pushed!`);
+        }
+
+        // Pop operation
+        function pop() {
+            if (currentIndex === 0) {
+                showPopup("Stack Underflow!");
+                return;
+            }
+
+            // Disable the pop button during the animation to prevent multiple clicks
+            const popButton = document.querySelector(".controls button:nth-child(2)"); // Get the pop button
+            popButton.disabled = true;
+
+            // Decrease index before popping
+            const topIndex = currentIndex - 1;
+            const value = stack[topIndex].textContent;
+
+            // Apply pop animation (move upwards out of the stack and then to the right)
+            stack[topIndex].style.position = "absolute";
+            stack[topIndex].style.zIndex = "10"; // Ensure it's above other elements
+            stack[topIndex].style.transition = "transform 0.3s ease, opacity 0.3s ease"; // Increased speed
+
+            // Add arrow animation for pop
+            const arrow = document.createElement("span");
+            arrow.classList.add("arrow", "arrow-down");
+            stack[topIndex].appendChild(arrow);
+
+            // First, move the element upwards out of the stack container
+            stack[topIndex].style.transform = "translateY(-60px)";
+
+            setTimeout(() => {
+                // Now that it has moved out, move it to the right (to the outside)
+                stack[topIndex].style.transform = "translate(100px, -60px)";
+                stack[topIndex].style.opacity = "0"; // Fade out as it moves right
+            }, 300); // This happens after the initial upward movement, with faster timing
+
+            setTimeout(() => {
+                // After both animations, reset everything and cleanup
+                stack[topIndex].textContent = ""; // Clear the element content
+                stack[topIndex].style = ""; // Reset inline styles
+                stack[topIndex].style.backgroundColor = "#dee2e6";
+                stack[topIndex].style.color = "#333";
+                stack[topIndex].style.opacity = "1";
+                arrow.remove();
+                currentIndex--; // Decrease index after pop
+                showPopup(`Element ${value} popped!`);
+
+                // Re-enable the pop button after the operation is complete
+                popButton.disabled = false;
+            }, 600); // Cleanup happens after both animations are done, with faster timing
+        }
+
+        // Show popup message
+        function showPopup(message) {
+            popup.textContent = message;
+            popup.style.display = "block";
+            setTimeout(() => {
+                popup.style.opacity = "1";
+            }, 100);
+            setTimeout(() => {
+                popup.style.opacity = "0";
+                setTimeout(() => {
+                    popup.style.display = "none";
+                }, 50);
+            }, 20);
+        }
+
+        // Add event listener for "Enter" key to trigger push
+        document.getElementById("element-value").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                push();
+            }
+        });
+    </script>
+</body>
+</html>
