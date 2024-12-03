@@ -46,30 +46,33 @@ https://templatemo.com/tm-586-scholar
     <!-- Sign-In Content -->
     <div class="container mt-20" style="margin-top: 10%;">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow" style="background-color: #9088c2; padding: 5%;">
-                    <div class="card-header text-center" style="background:none">
-                        <h3>Sign-In</h3>
-                    </div>
-                    <!-- ***** Serach Start ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li class="scroll-to-section"><a href="./index.html">Home</a></li>
-                      
-
-                      <li class="scroll-to-section"><a href="./code.html">Code Editor</a></li>
-                      
-                      <li class="scroll-to-section"><a href="./sign-in.html" class="active">Sign-In</a></li>
-                      <li class="scroll-to-section"><a href="./sign-up.html">Sign-Up</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
+          <div class="col-md-6">
+            <div class="card shadow" style="background-color: #9088c2; padding: 5%;">
+              <div class="card-header text-center" style="background:none">
+                <h3>Sign-In</h3>
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="username" class="form-label" style="font-size: large;">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter your username" required style="padding: 2%;">
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label" style="font-size: large;">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Create a password" required style="padding: 2%;">
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Sign-In</button>
+                  <div class="text-center mt-3">
+                    <a href="./sign-up.html">Don't have an account? Sign-Up</a>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
+    
+    
 
     <!-- Scripts -->
     <script>
@@ -80,7 +83,7 @@ https://templatemo.com/tm-586-scholar
             const password = document.querySelector('#password').value;
 
             // API call to the Django backend
-            fetch('http://127.0.0.1:8000/api/sign-in/', { // Update with your backend URL
+            fetch('http://127.0.0.1:8000/api/login/', { // Update with your backend URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
