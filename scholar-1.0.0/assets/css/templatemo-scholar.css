@@ -671,7 +671,7 @@ Banner Style
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 170px 0px 120px 0px;
+  padding-top: 170px;
 }
 
 .main-banner .item-1 {
@@ -1515,6 +1515,8 @@ Contact Style
 }
 
 .contact-us .contact-us-content {
+  width: 120%;
+  height: 120%;
   border-radius: 25px;
   padding: 80px;
   background-color: #7a6ad8;
