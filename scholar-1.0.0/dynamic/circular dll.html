@@ -58,31 +58,16 @@
       background-color: #0056b3;
     }
 
-    .visualizer-container {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .visualizer {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
     .node-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      position: absolute;
+      transform-origin: center;
     }
 
     .node {
-      position: relative;
       background: #007bff;
       color: #fff;
       padding: 10px 20px;
-      border-radius: 50px;
+      border-radius: 50%;
       font-size: 14px;
       text-align: center;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -90,8 +75,8 @@
 
     .address {
       font-size: 12px;
-      color: #333;
-      margin: 5px 0;
+      color: #00ff1a;
+      margin-top: 5px;
     }
   </style>
 </head>
@@ -108,267 +93,259 @@
       <button onclick="deleteFromEnd()">Delete End</button>
       <button onclick="deleteFromPosition()">Delete Position</button>
     </div>
-    <div class="visualizer-container">
-      <div class="visualizer" id="visualizer"></div>
-    </div>
+    <div class="visualizer-container" id="visualizer"></div>
   </div>
   <script>
     class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-    this.prev = null;
-    this.address = this.generateRandomAddress();
-    this.prevAddress = null;
-    this.nextAddress = null;
-  }
+      constructor(value) {
+        this.value = value;
+        this.next = null;
+        this.prev = null;
+        this.address = this.generateRandomAddress();
+      }
 
-  // Generate a random 6-digit address
-  generateRandomAddress() {
-    return Math.floor(Math.random() * 900000) + 100000;
-  }
-}
-
-class CircularDoublyLinkedList {
-  constructor() {
-    this.head = null;
-    this.tail = null;
-  }
-
-  // Insert a node at the beginning
-  insertAtBeginning(value) {
-    const newNode = new Node(value);
-
-    if (!this.head) {
-      // First node
-      this.head = newNode;
-      this.tail = newNode;
-      newNode.next = newNode;
-      newNode.prev = newNode;
-    } else {
-      newNode.next = this.head;
-      newNode.prev = this.tail;
-
-      this.head.prev = newNode;
-      this.tail.next = newNode;
-
-      this.head = newNode;
+      generateRandomAddress() {
+        return Math.floor(Math.random() * 900000) + 100000; // Generate random 6-digit address
+      }
     }
 
-    // Update addresses
-    this.updateAddresses();
-    this.updateVisualizer();
-  }
+    class CircularDoublyLinkedList {
+      constructor() {
+        this.head = null;
+        this.tail = null;
+      }
 
-  // Insert a node at the end
-  insertAtEnd(value) {
-    if (!this.head) {
-      this.insertAtBeginning(value);
-    } else {
-      const newNode = new Node(value);
+      updateAddresses() {
+        if (!this.head) return;
 
-      newNode.prev = this.tail;
-      newNode.next = this.head;
+        let current = this.head;
 
-      this.tail.next = newNode;
-      this.head.prev = newNode;
+        do {
+          current.prevAddress = current.prev ? current.prev.address : null;
+          current.nextAddress = current.next ? current.next.address : null;
+          current = current.next;
+        } while (current !== this.head);
+      }
 
-      this.tail = newNode;
+      insertAtBeginning(value) {
+        const newNode = new Node(value);
 
-      // Update addresses
-      this.updateAddresses();
-      this.updateVisualizer();
+        if (!this.head) {
+          this.head = newNode;
+          this.tail = newNode;
+          newNode.next = newNode;
+          newNode.prev = newNode;
+        } else {
+          newNode.next = this.head;
+          newNode.prev = this.tail;
+
+          this.head.prev = newNode;
+          this.tail.next = newNode;
+
+          this.head = newNode;
+        }
+
+        this.updateAddresses();
+        this.updateVisualizer();
+      }
+
+      insertAtEnd(value) {
+        if (!this.head) {
+          this.insertAtBeginning(value);
+        } else {
+          const newNode = new Node(value);
+
+          newNode.prev = this.tail;
+          newNode.next = this.head;
+
+          this.tail.next = newNode;
+          this.head.prev = newNode;
+
+          this.tail = newNode;
+        }
+
+        this.updateAddresses();
+        this.updateVisualizer();
+      }
+
+      insertAtPosition(value, position) {
+        if (position === 1 || !this.head) {
+          this.insertAtBeginning(value);
+          return;
+        }
+
+        const newNode = new Node(value);
+        let current = this.head;
+        let count = 1;
+
+        while (count < position - 1 && current.next !== this.head) {
+          current = current.next;
+          count++;
+        }
+
+        newNode.next = current.next;
+        newNode.prev = current;
+
+        current.next.prev = newNode;
+        current.next = newNode;
+
+        this.updateAddresses();
+        this.updateVisualizer();
+      }
+
+      deleteFromBeginning() {
+        if (!this.head) return;
+
+        if (this.head === this.tail) {
+          this.head = null;
+          this.tail = null;
+        } else {
+          this.head = this.head.next;
+          this.head.prev = this.tail;
+          this.tail.next = this.head;
+        }
+
+        this.updateAddresses();
+        this.updateVisualizer();
+      }
+
+      deleteFromEnd() {
+        if (!this.head) return;
+
+        if (this.head === this.tail) {
+          this.head = null;
+          this.tail = null;
+        } else {
+          this.tail = this.tail.prev;
+          this.tail.next = this.head;
+          this.head.prev = this.tail;
+        }
+
+        this.updateAddresses();
+        this.updateVisualizer();
+      }
+
+      deleteFromPosition(position) {
+        if (!this.head || position === 1) {
+          this.deleteFromBeginning();
+          return;
+        }
+
+        let current = this.head;
+        let count = 1;
+
+        while (count < position && current.next !== this.head) {
+          current = current.next;
+          count++;
+        }
+
+        if (current === this.tail) {
+          this.deleteFromEnd();
+          return;
+        }
+
+        current.prev.next = current.next;
+        current.next.prev = current.prev;
+
+        this.updateAddresses();
+        this.updateVisualizer();
+      }
+
+      updateVisualizer() {
+        const visualizer = document.getElementById("visualizer");
+        visualizer.innerHTML = ""; // Clear existing visualization
+
+        if (!this.head) return;
+
+        let current = this.head;
+        const nodes = [];
+        const angleIncrement = 360 / this.size();
+
+        do {
+          nodes.push(current);
+          current = current.next;
+        } while (current !== this.head);
+
+        nodes.forEach((node, i) => {
+          const angle = i * angleIncrement;
+          const x = 180 + 150 * Math.cos((angle * Math.PI) / 180);
+          const y = 180 + 150 * Math.sin((angle * Math.PI) / 180);
+
+          const nodeContainer = document.createElement("div");
+          nodeContainer.classList.add("node-container");
+          nodeContainer.style.transform = `translate(${x}px, ${y}px)`;
+
+          const nodeElement = document.createElement("div");
+          nodeElement.classList.add("node");
+          nodeElement.innerHTML = `
+            <div class="address">Prev: ${node.prevAddress ?? "NULL"}</div>
+            <div class="data">Value: ${node.value}</div>
+            <div class="address">Next: ${node.nextAddress ?? "NULL"}</div>
+          `;
+
+          nodeContainer.appendChild(nodeElement);
+          visualizer.appendChild(nodeContainer);
+        });
+      }
+
+      size() {
+        if (!this.head) return 0;
+
+        let current = this.head;
+        let count = 0;
+
+        do {
+          count++;
+          current = current.next;
+        } while (current !== this.head);
+
+        return count;
+      }
     }
-  }
 
-  // Insert a node at a specific position
-  insertAtPosition(value, position) {
-    if (position < 1) return;
+    const list = new CircularDoublyLinkedList();
 
-    if (position === 1) {
-      this.insertAtBeginning(value);
-      return;
+    function insertAtBeginning() {
+      const value = document.getElementById("nodeValue").value;
+      if (value) {
+        list.insertAtBeginning(value);
+        document.getElementById("nodeValue").value = "";
+      }
     }
 
-    const newNode = new Node(value);
-    let current = this.head;
-    let index = 1;
-
-    while (current && index < position - 1) {
-      current = current.next;
-      index++;
+    function insertAtEnd() {
+      const value = document.getElementById("nodeValue").value;
+      if (value) {
+        list.insertAtEnd(value);
+        document.getElementById("nodeValue").value = "";
+      }
     }
 
-    if (current === this.tail) {
-      // If the position is beyond the length, insert at the end
-      this.insertAtEnd(value);
-    } else {
-      newNode.next = current.next;
-      newNode.prev = current;
-
-      current.next.prev = newNode;
-      current.next = newNode;
-
-      // Update addresses
-      this.updateAddresses();
-      this.updateVisualizer();
-    }
-  }
-
-  // Delete a node from the beginning
-  deleteFromBeginning() {
-    if (!this.head) return;
-
-    if (this.head === this.tail) {
-      // Single node
-      this.head = null;
-      this.tail = null;
-    } else {
-      this.head = this.head.next;
-      this.head.prev = this.tail;
-      this.tail.next = this.head;
+    function insertAtPosition() {
+      const value = document.getElementById("nodeValue").value;
+      const position = parseInt(document.getElementById("nodePosition").value);
+      if (value && position > 0) {
+        list.insertAtPosition(value, position);
+        document.getElementById("nodeValue").value = "";
+        document.getElementById("nodePosition").value = "";
+      }
     }
 
-    // Update addresses
-    this.updateAddresses();
-    this.updateVisualizer();
-  }
-
-  // Delete a node from the end
-  deleteFromEnd() {
-    if (!this.head) return;
-
-    if (this.head === this.tail) {
-      // Single node
-      this.head = null;
-      this.tail = null;
-    } else {
-      this.tail = this.tail.prev;
-      this.tail.next = this.head;
-      this.head.prev = this.tail;
+    function deleteFromBeginning() {
+      list.deleteFromBeginning();
     }
 
-    // Update addresses
-    this.updateAddresses();
-    this.updateVisualizer();
-  }
-
-  // Delete a node from a specific position
-  deleteFromPosition(position) {
-    if (position < 1 || !this.head) return;
-
-    if (position === 1) {
-      this.deleteFromBeginning();
-      return;
+    function deleteFromEnd() {
+      list.deleteFromEnd();
     }
 
-    let current = this.head;
-    let index = 1;
-
-    while (current && index < position) {
-      current = current.next;
-      index++;
+    function deleteFromPosition() {
+      const position = parseInt(document.getElementById("nodePosition").value);
+      if (position > 0) {
+        list.deleteFromPosition(position);
+        document.getElementById("nodePosition").value = "";
+      }
     }
-
-    if (current === this.tail) {
-      this.deleteFromEnd();
-    } else if (current) {
-      current.prev.next = current.next;
-      current.next.prev = current.prev;
-
-      // Update addresses
-      this.updateAddresses();
-      this.updateVisualizer();
-    }
-  }
-
-  // Update addresses of all nodes
-  updateAddresses() {
-    if (!this.head) return;
-
-    let current = this.head;
-
-    do {
-      current.prevAddress = current.prev ? current.prev.address : null;
-      current.nextAddress = current.next ? current.next.address : null;
-      current = current.next;
-    } while (current !== this.head);
-  }
-
-  // Update the visualizer
-  updateVisualizer() {
-    const visualizer = document.getElementById("visualizer");
-    visualizer.innerHTML = ""; // Clear existing visualization
-
-    if (!this.head) return;
-
-    let current = this.head;
-
-    do {
-      const nodeContainer = document.createElement("div");
-      nodeContainer.classList.add("node-container");
-
-      const nodeElement = document.createElement("div");
-      nodeElement.classList.add("node");
-      nodeElement.innerHTML = `
-        <div class="address">Prev Address: ${current.prevAddress}</div>
-        <div class="data">${current.value}</div>
-        <div class="address">Next Address: ${current.nextAddress}</div>
-      `;
-
-      nodeContainer.appendChild(nodeElement);
-      visualizer.appendChild(nodeContainer);
-
-      current = current.next;
-    } while (current !== this.head);
-  }
-}
-
-// Instantiate the list
-const list = new CircularDoublyLinkedList();
-
-// Functions for button interactions
-function insertAtBeginning() {
-  const value = document.getElementById("nodeValue").value;
-  if (value) {
-    list.insertAtBeginning(value);
-    document.getElementById("nodeValue").value = "";
-  }
-}
-
-function insertAtEnd() {
-  const value = document.getElementById("nodeValue").value;
-  if (value) {
-    list.insertAtEnd(value);
-    document.getElementById("nodeValue").value = "";
-  }
-}
-
-function insertAtPosition() {
-  const value = document.getElementById("nodeValue").value;
-  const position = parseInt(document.getElementById("nodePosition").value);
-  if (value && !isNaN(position)) {
-    list.insertAtPosition(value, position);
-    document.getElementById("nodeValue").value = "";
-    document.getElementById("nodePosition").value = "";
-  }
-}
-
-function deleteFromBeginning() {
-  list.deleteFromBeginning();
-}
-
-function deleteFromEnd() {
-  list.deleteFromEnd();
-}
-
-function deleteFromPosition() {
-  const position = parseInt(document.getElementById("nodePosition").value);
-  if (!isNaN(position)) {
-    list.deleteFromPosition(position);
-    document.getElementById("nodePosition").value = "";
-  }
-}
   </script>
 </body>
 </html>
