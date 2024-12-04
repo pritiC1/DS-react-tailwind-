@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circular Doubly Linked List Visualizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .controls input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .controls button {
+      padding: 10px 15px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #0056b3;
+    }
+
+    .visualizer-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .visualizer {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .node-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .node {
+      position: relative;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .address {
+      font-size: 12px;
+      color: #333;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Circular Doubly Linked List Visualizer</h1>
+    <div class="controls">
+      <input type="text" id="nodeValue" placeholder="Node Value">
+      <input type="number" id="nodePosition" placeholder="Position (Optional)" min="1">
+      <button onclick="insertAtBeginning()">Insert Beginning</button>
+      <button onclick="insertAtEnd()">Insert End</button>
+      <button onclick="insertAtPosition()">Insert Position</button>
+      <button onclick="deleteFromBeginning()">Delete Beginning</button>
+      <button onclick="deleteFromEnd()">Delete End</button>
+      <button onclick="deleteFromPosition()">Delete Position</button>
+    </div>
+    <div class="visualizer-container">
+      <div class="visualizer" id="visualizer"></div>
+    </div>
+  </div>
+  <script>
+    class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+    this.address = this.generateRandomAddress();
+    this.prevAddress = null;
+    this.nextAddress = null;
+  }
+
+  // Generate a random 6-digit address
+  generateRandomAddress() {
+    return Math.floor(Math.random() * 900000) + 100000;
+  }
+}
+
+class CircularDoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  // Insert a node at the beginning
+  insertAtBeginning(value) {
+    const newNode = new Node(value);
+
+    if (!this.head) {
+      // First node
+      this.head = newNode;
+      this.tail = newNode;
+      newNode.next = newNode;
+      newNode.prev = newNode;
+    } else {
+      newNode.next = this.head;
+      newNode.prev = this.tail;
+
+      this.head.prev = newNode;
+      this.tail.next = newNode;
+
+      this.head = newNode;
+    }
+
+    // Update addresses
+    this.updateAddresses();
+    this.updateVisualizer();
+  }
+
+  // Insert a node at the end
+  insertAtEnd(value) {
+    if (!this.head) {
+      this.insertAtBeginning(value);
+    } else {
+      const newNode = new Node(value);
+
+      newNode.prev = this.tail;
+      newNode.next = this.head;
+
+      this.tail.next = newNode;
+      this.head.prev = newNode;
+
+      this.tail = newNode;
+
+      // Update addresses
+      this.updateAddresses();
+      this.updateVisualizer();
+    }
+  }
+
+  // Insert a node at a specific position
+  insertAtPosition(value, position) {
+    if (position < 1) return;
+
+    if (position === 1) {
+      this.insertAtBeginning(value);
+      return;
+    }
+
+    const newNode = new Node(value);
+    let current = this.head;
+    let index = 1;
+
+    while (current && index < position - 1) {
+      current = current.next;
+      index++;
+    }
+
+    if (current === this.tail) {
+      // If the position is beyond the length, insert at the end
+      this.insertAtEnd(value);
+    } else {
+      newNode.next = current.next;
+      newNode.prev = current;
+
+      current.next.prev = newNode;
+      current.next = newNode;
+
+      // Update addresses
+      this.updateAddresses();
+      this.updateVisualizer();
+    }
+  }
+
+  // Delete a node from the beginning
+  deleteFromBeginning() {
+    if (!this.head) return;
+
+    if (this.head === this.tail) {
+      // Single node
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next;
+      this.head.prev = this.tail;
+      this.tail.next = this.head;
+    }
+
+    // Update addresses
+    this.updateAddresses();
+    this.updateVisualizer();
+  }
+
+  // Delete a node from the end
+  deleteFromEnd() {
+    if (!this.head) return;
+
+    if (this.head === this.tail) {
+      // Single node
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = this.tail.prev;
+      this.tail.next = this.head;
+      this.head.prev = this.tail;
+    }
+
+    // Update addresses
+    this.updateAddresses();
+    this.updateVisualizer();
+  }
+
+  // Delete a node from a specific position
+  deleteFromPosition(position) {
+    if (position < 1 || !this.head) return;
+
+    if (position === 1) {
+      this.deleteFromBeginning();
+      return;
+    }
+
+    let current = this.head;
+    let index = 1;
+
+    while (current && index < position) {
+      current = current.next;
+      index++;
+    }
+
+    if (current === this.tail) {
+      this.deleteFromEnd();
+    } else if (current) {
+      current.prev.next = current.next;
+      current.next.prev = current.prev;
+
+      // Update addresses
+      this.updateAddresses();
+      this.updateVisualizer();
+    }
+  }
+
+  // Update addresses of all nodes
+  updateAddresses() {
+    if (!this.head) return;
+
+    let current = this.head;
+
+    do {
+      current.prevAddress = current.prev ? current.prev.address : null;
+      current.nextAddress = current.next ? current.next.address : null;
+      current = current.next;
+    } while (current !== this.head);
+  }
+
+  // Update the visualizer
+  updateVisualizer() {
+    const visualizer = document.getElementById("visualizer");
+    visualizer.innerHTML = ""; // Clear existing visualization
+
+    if (!this.head) return;
+
+    let current = this.head;
+
+    do {
+      const nodeContainer = document.createElement("div");
+      nodeContainer.classList.add("node-container");
+
+      const nodeElement = document.createElement("div");
+      nodeElement.classList.add("node");
+      nodeElement.innerHTML = `
+        <div class="address">Prev Address: ${current.prevAddress}</div>
+        <div class="data">${current.value}</div>
+        <div class="address">Next Address: ${current.nextAddress}</div>
+      `;
+
+      nodeContainer.appendChild(nodeElement);
+      visualizer.appendChild(nodeContainer);
+
+      current = current.next;
+    } while (current !== this.head);
+  }
+}
+
+// Instantiate the list
+const list = new CircularDoublyLinkedList();
+
+// Functions for button interactions
+function insertAtBeginning() {
+  const value = document.getElementById("nodeValue").value;
+  if (value) {
+    list.insertAtBeginning(value);
+    document.getElementById("nodeValue").value = "";
+  }
+}
+
+function insertAtEnd() {
+  const value = document.getElementById("nodeValue").value;
+  if (value) {
+    list.insertAtEnd(value);
+    document.getElementById("nodeValue").value = "";
+  }
+}
+
+function insertAtPosition() {
+  const value = document.getElementById("nodeValue").value;
+  const position = parseInt(document.getElementById("nodePosition").value);
+  if (value && !isNaN(position)) {
+    list.insertAtPosition(value, position);
+    document.getElementById("nodeValue").value = "";
+    document.getElementById("nodePosition").value = "";
+  }
+}
+
+function deleteFromBeginning() {
+  list.deleteFromBeginning();
+}
+
+function deleteFromEnd() {
+  list.deleteFromEnd();
+}
+
+function deleteFromPosition() {
+  const position = parseInt(document.getElementById("nodePosition").value);
+  if (!isNaN(position)) {
+    list.deleteFromPosition(position);
+    document.getElementById("nodePosition").value = "";
+  }
+}
+  </script>
+</body>
+</html>
