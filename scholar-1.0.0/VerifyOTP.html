@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Verify OTP - DSAPathshala</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-scholar.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+</head>
+
+<body>
+  <!-- Header -->
+
+  <div class="container mt-20" style="margin-top: 10%;">
+  <header class="header-area header-sticky" style="background-color: #7B6AD8; padding: 2%; top: 0%;">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <a href="index.html" class="logo">
+              <h1 style="font-size: 28px;">DSAPathshala</h1>
+            </a>
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="./index.html">Home</a></li>
+              <li class="scroll-to-section"><a href="./sign-in.html">Sign-In</a></li>
+              <li class="scroll-to-section"><a href="./sign-up.html">Sign-Up</a></li>
+              <li class="scroll-to-section"><a href="./VerifyOTP.html" class="active">Verify OTP</a></li>
+            </ul>
+            <a class="menu-trigger">
+              <span>Menu</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Verify OTP Form -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow" style="background-color: #9088c2; padding: 5%; font-size: 16px;">
+          <div class="card-header text-center" style="background:none">
+            <h3 style="font-size: 24px;">Verify OTP</h3>
+          </div>
+          <div class="card-body">
+            <form id="VerifyOtpForm">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
+              </div>
+              <div class="mb-3">
+                <label for="otp" class="form-label">OTP Code</label>
+                <input type="number" class="form-control" id="otp" placeholder="Enter the OTP sent to your email" required>
+              </div>
+              <button type="submit" class="btn btn-success w-100">Verify OTP</button>
+              <div id="message" class="mt-3"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    document.getElementById('VerifyOtpForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      const formData = {
+        username: document.getElementById('username').value.trim(),
+        otp_code: document.getElementById('otp').value.trim(),
+      };
+
+      const messageElement = document.getElementById('message');
+      messageElement.innerHTML = ""; // Clear previous messages
+
+      fetch('http://127.0.0.1:8000/api/VerifyOTP/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+        .then(response => {
+          if (!response.ok) {
+            return response.json().then(errorData => {
+              throw new Error(errorData.error || "Verification failed. Please try again.");
+            });
+          }
+          return response.json();
+        })
+        .then(data => {
+          messageElement.innerHTML = `<span style="color: green;">${data.message}</span>`;
+          setTimeout(() => {
+            window.location.href = "./sign-in.html"; // Redirect to sign-in page
+          }, 2000);
+        })
+        .catch(error => {
+          messageElement.innerHTML = `<span style="color: red;">${error.message}</span>`;
+        });
+    });
+  </script>
+</body>
+
+</html>

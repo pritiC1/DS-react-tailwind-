@@ -19,13 +19,10 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
 
-TemplateMo 586 Scholar
+    <!--Chatbot css file-->
+    <link rel="stylesheet" href="./assets/css/chatbot.css"/>
 
-https://templatemo.com/tm-586-scholar
-
--->
   </head>
 
 <body>
@@ -50,9 +47,9 @@ https://templatemo.com/tm-586-scholar
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <h1>DSAPathshala</h1>
-                    </a>
+                    <div href="index.html" class="logo" style=" margin-right: 7%;">
+                      <img src="./assets/images/title1.png" style="width: 130%;"/>
+                    </div>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Serach Start ***** -->
                     <div class="search-input">
@@ -81,6 +78,27 @@ https://templatemo.com/tm-586-scholar
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
+
+  <!--Chat Bot-->
+  <div class="chatbot-icon" id="chatbot-icon">
+    <img src="./assets/images/chatbot1.png" style="border-radius: 50%;"/>
+  </div>
+
+  <!-- Chatbot Container Begin-->
+  <div class="chatbot-container" id="chatbot-container">
+      <div class="chat-header">
+          <h3 style="color: #9088c2;">DSAP-Bot</h3>
+          <button id="close-chatbot" style="border-radius: 15%; border-width: 0;" class="close-chatbot">✖</button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+          <!-- Messages will be dynamically added here -->
+      </div>
+      <div class="chat-input">
+          <input type="text" id="user-input" placeholder="Type your query here...">
+          <button id="send-btn">Send</button>
+      </div>
+  </div>
+  <!--Chat Bot End-->
 
   <div class="main-banner" id="top">
     <div class="container">
@@ -115,6 +133,7 @@ https://templatemo.com/tm-586-scholar
     </div>
   </div>
 
+
   <div class="services section" id="algorithm">
     <div class="container">
       <div class="row">
@@ -127,7 +146,7 @@ https://templatemo.com/tm-586-scholar
               <h4>Searching Algorithms</h4>
               <p>Searching refers to the process of finding an element in a collection of data, such as an array, list, or database. Searching algorithms help locate a specific value (or determine if it exists) efficiently.</p>
               <div class="main-button">
-                <a href="./searching/Linear_Search.html">Read More</a>
+                <a href="./searching/linear_search.html">Read More</a>
               </div>
             </div>
           </div>
@@ -141,7 +160,7 @@ https://templatemo.com/tm-586-scholar
               <h4>Sorting Algorithms</h4>
               <p>Sorting is the process of arranging elements in a specific order (either ascending or descending). Sorting is essential because it often simplifies problem-solving and improves the efficiency</p>
               <div class="main-button">
-                <a href="./Sorting/bubbleSort.html">Read More</a>
+                <a href="./sorting/bubbleSort.html">Read More</a>
               </div>
             </div>
           </div>
@@ -222,7 +241,6 @@ https://templatemo.com/tm-586-scholar
         </div>
         <div class="col-lg-5 align-self-center">
           <div class="section-heading">
-            <h6>About Us</h6>
             <h2>What make us the best academy online?</h2>
             <p>We continuously update our content to ensure it aligns with the latest standards and trends. You can always count on our expert support to make your learning experience smooth and efficient.</p>
           </div>
@@ -529,14 +547,17 @@ https://templatemo.com/tm-586-scholar
 
   <footer>
     <div class="container">
-      <div class="col-lg-12" style="font-size: 15px;">
-        <p>Made with <i class="fas fa-heart"></i> by HackBreakers!
+      <div class="col-lg-12">
+        <p style="font-size: 20px;">Made with <i class="fas fa-heart"></i> by HackBreakers!
         </p>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
+  <!--Script for chatbot-->
+  <script src="./assets/js/chatbot.js"></script>
+
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -547,3 +568,4 @@ https://templatemo.com/tm-586-scholar
 
   </body>
 </html>
+
