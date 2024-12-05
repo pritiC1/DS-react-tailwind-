@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circular Singly Linked List Visualizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .controls input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .controls button {
+      padding: 10px 15px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #0056b3;
+    }
+
+    .visualizer-container {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      margin: 50px auto;
+      border-radius: 50%;
+      background: #e9ecef;
+      overflow: hidden;
+    }
+
+    .node {
+      position: absolute;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Circular Singly Linked List Visualizer</h1>
+    <div class="controls">
+      <input type="text" id="nodeValue" placeholder="Node Value">
+      <input type="number" id="nodePosition" placeholder="Position (Optional)" min="1">
+      <button onclick="insertAtBeginning()">Insert Beginning</button>
+      <button onclick="insertAtEnd()">Insert End</button>
+      <button onclick="insertAtPosition()">Insert Position</button>
+      <button onclick="deleteFromBeginning()">Delete Beginning</button>
+      <button onclick="deleteFromEnd()">Delete End</button>
+      <button onclick="deleteFromPosition()">Delete Position</button>
+    </div>
+    <div id="visualizer" class="visualizer-container"></div>
+  </div>
+  <script>
+    class Node {
+      constructor(value) {
+        this.value = value;
+        this.next = null;
+        this.address = this.generateRandomAddress(); // Add address
+      }
+  
+      generateRandomAddress() {
+        return Math.floor(Math.random() * 900000) + 100000; // Generate a 6-digit random address
+      }
+    }
+  
+    class CircularSinglyLinkedList {
+      constructor() {
+        this.head = null;
+      }
+  
+      insertAtBeginning(value) {
+        const newNode = new Node(value);
+        if (!this.head) {
+          this.head = newNode;
+          newNode.next = this.head;
+        } else {
+          let current = this.head;
+          while (current.next !== this.head) {
+            current = current.next;
+          }
+          newNode.next = this.head;
+          current.next = newNode;
+          this.head = newNode;
+        }
+        this.updateVisualizer();
+      }
+  
+      insertAtEnd(value) {
+        const newNode = new Node(value);
+        if (!this.head) {
+          this.insertAtBeginning(value);
+        } else {
+          let current = this.head;
+          while (current.next !== this.head) {
+            current = current.next;
+          }
+          current.next = newNode;
+          newNode.next = this.head;
+        }
+        this.updateVisualizer();
+      }
+  
+      insertAtPosition(value, position) {
+        if (position === 1 || !this.head) {
+          this.insertAtBeginning(value);
+          return;
+        }
+        const newNode = new Node(value);
+        let current = this.head;
+        let count = 1;
+        while (count < position - 1 && current.next !== this.head) {
+          current = current.next;
+          count++;
+        }
+        newNode.next = current.next;
+        current.next = newNode;
+        this.updateVisualizer();
+      }
+  
+      deleteFromBeginning() {
+        if (!this.head) return;
+        if (this.head.next === this.head) {
+          this.head = null;
+        } else {
+          let current = this.head;
+          while (current.next !== this.head) {
+            current = current.next;
+          }
+          this.head = this.head.next;
+          current.next = this.head;
+        }
+        this.updateVisualizer();
+      }
+  
+      deleteFromEnd() {
+        if (!this.head) return;
+        if (this.head.next === this.head) {
+          this.head = null;
+        } else {
+          let current = this.head;
+          while (current.next.next !== this.head) {
+            current = current.next;
+          }
+          current.next = this.head;
+        }
+        this.updateVisualizer();
+      }
+  
+      deleteFromPosition(position) {
+        if (!this.head || position === 1) {
+          this.deleteFromBeginning();
+          return;
+        }
+        let current = this.head;
+        let count = 1;
+        while (count < position - 1 && current.next !== this.head) {
+          current = current.next;
+          count++;
+        }
+        if (current.next && current.next !== this.head) {
+          current.next = current.next.next;
+        }
+        this.updateVisualizer();
+      }
+  
+      updateVisualizer() {
+        const visualizer = document.getElementById("visualizer");
+        visualizer.innerHTML = ""; // Clear existing visualization
+  
+        if (!this.head) return;
+  
+        let current = this.head;
+        const nodes = [];
+        do {
+          nodes.push(current);
+          current = current.next;
+        } while (current !== this.head);
+  
+        const radius = 200; // Radius of the circle
+        const centerX = 250; // Center X of the visualizer
+        const centerY = 250; // Center Y of the visualizer
+        const angleIncrement = (2 * Math.PI) / nodes.length;
+  
+        nodes.forEach((node, index) => {
+          const angle = index * angleIncrement;
+          const x = centerX + radius * Math.cos(angle);
+          const y = centerY + radius * Math.sin(angle);
+  
+          const nodeElement = document.createElement("div");
+          nodeElement.className = "node";
+          nodeElement.style.left = `${x}px`;
+          nodeElement.style.top = `${y}px`;
+          nodeElement.innerHTML = `
+            <div>Value: ${node.value}</div>
+            <div>Address: ${node.address}</div>
+          `;
+  
+          visualizer.appendChild(nodeElement);
+        });
+      }
+    }
+  
+    const list = new CircularSinglyLinkedList();
+  
+    function insertAtBeginning() {
+      const value = document.getElementById("nodeValue").value;
+      if (value) {
+        list.insertAtBeginning(value);
+        document.getElementById("nodeValue").value = "";
+      }
+    }
+  
+    function insertAtEnd() {
+      const value = document.getElementById("nodeValue").value;
+      if (value) {
+        list.insertAtEnd(value);
+        document.getElementById("nodeValue").value = "";
+      }
+    }
+  
+    function insertAtPosition() {
+      const value = document.getElementById("nodeValue").value;
+      const position = parseInt(document.getElementById("nodePosition").value);
+      if (value && position > 0) {
+        list.insertAtPosition(value, position);
+        document.getElementById("nodeValue").value = "";
+        document.getElementById("nodePosition").value = "";
+      }
+    }
+  
+    function deleteFromBeginning() {
+      list.deleteFromBeginning();
+    }
+  
+    function deleteFromEnd() {
+      list.deleteFromEnd();
+    }
+  
+    function deleteFromPosition() {
+      const position = parseInt(document.getElementById("nodePosition").value);
+      if (position > 0) {
+        list.deleteFromPosition(position);
+        document.getElementById("nodePosition").value = "";
+      }
+    }
+  </script>
+  
+</body>
+</html>
