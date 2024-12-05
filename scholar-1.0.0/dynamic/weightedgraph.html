@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Weighted Graph</title>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f9;
+  }
+  
+  h1 {
+    margin: 20px 0;
+  }
+  
+  #controls {
+    margin: 10px auto;
+    text-align: left;
+    display: inline-block;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input, select, button {
+    margin: 5px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  #graph-container {
+    margin: 20px auto;
+    width: 800px;
+    height: 500px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    position: relative;
+  }
+  
+  .node {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .edge-weight {
+    position: absolute;
+    color: red;
+    font-weight: bold;
+    background: white;
+    padding: 2px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  </style>
+</head>
+<body>
+  <h1>Dynamic Weighted Graph</h1>
+  <div id="controls">
+    <h3>Graph Controls</h3>
+    <label for="node-label">Node Label: </label>
+    <input type="text" id="node-label" placeholder="A, B, C, etc.">
+    <button id="add-node">Add Node</button>
+    <br>
+    <label for="edge-from">From: </label>
+    <select id="edge-from"></select>
+    <label for="edge-to">To: </label>
+    <select id="edge-to"></select>
+    <label for="edge-weight">Weight: </label>
+    <input type="number" id="edge-weight" placeholder="Weight">
+    <button id="add-edge">Add Edge</button>
+    <br>
+    <button id="clear-graph">Clear Graph</button>
+  </div>
+  <div id="graph-container"></div>
+  <script>
+    const graphContainer = document.getElementById('graph-container');
+const nodeLabelInput = document.getElementById('node-label');
+const edgeFromSelect = document.getElementById('edge-from');
+const edgeToSelect = document.getElementById('edge-to');
+const edgeWeightInput = document.getElementById('edge-weight');
+const addNodeButton = document.getElementById('add-node');
+const addEdgeButton = document.getElementById('add-edge');
+const clearGraphButton = document.getElementById('clear-graph');
+
+let nodes = {}; // Stores nodes as {label: element}
+let edges = []; // Stores edges as {from: label, to: label, weight: number}
+
+// Function to calculate the midpoint of two points
+function calculateMidpoint(x1, y1, x2, y2) {
+  return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
+}
+
+// Add a new node
+addNodeButton.addEventListener('click', () => {
+  const label = nodeLabelInput.value.trim();
+  if (!label || nodes[label]) return alert('Invalid or duplicate node label.');
+
+  // Create node element
+  const nodeElement = document.createElement('div');
+  nodeElement.classList.add('node');
+  nodeElement.textContent = label;
+  nodeElement.style.top = `${Math.random() * 400 + 50}px`;
+  nodeElement.style.left = `${Math.random() * 700 + 50}px`;
+
+  // Add the node to the container and nodes map
+  nodes[label] = nodeElement;
+  graphContainer.appendChild(nodeElement);
+
+  // Add node to dropdowns
+  const option = document.createElement('option');
+  option.value = label;
+  option.textContent = label;
+  edgeFromSelect.appendChild(option.cloneNode(true));
+  edgeToSelect.appendChild(option);
+
+  // Clear input
+  nodeLabelInput.value = '';
+});
+
+// Add a new edge
+addEdgeButton.addEventListener('click', () => {
+  const from = edgeFromSelect.value;
+  const to = edgeToSelect.value;
+  const weight = edgeWeightInput.value.trim();
+
+  if (!from || !to || !weight || from === to || isNaN(weight)) {
+    return alert('Invalid edge input.');
+  }
+
+  // Check if edge already exists
+  if (edges.some((e) => e.from === from && e.to === to)) {
+    return alert('Edge already exists!');
+  }
+
+  // Draw the edge visually
+  drawEdge(from, to, weight);
+
+  // Store the edge data
+  edges.push({ from, to, weight: parseFloat(weight) });
+
+  // Clear weight input
+  edgeWeightInput.value = '';
+});
+
+
+function drawEdge(from, to, weight) {
+  const fromNode = nodes[from];
+  const toNode = nodes[to];
+
+  const fromRect = fromNode.getBoundingClientRect();
+  const toRect = toNode.getBoundingClientRect();
+  const containerRect = graphContainer.getBoundingClientRect();
+
+  // Get the centers of the nodes
+  const fromCenterX = fromRect.left - containerRect.left + fromRect.width / 2;
+  const fromCenterY = fromRect.top - containerRect.top + fromRect.height / 2;
+  const toCenterX = toRect.left - containerRect.left + toRect.width / 2;
+  const toCenterY = toRect.top - containerRect.top + toRect.height / 2;
+
+  // Calculate the angle between the centers
+  const angle = Math.atan2(toCenterY - fromCenterY, toCenterX - fromCenterX);
+
+  // Radius of the nodes (assume nodes are circles with width = height)
+  const nodeRadius = fromRect.width / 2;
+
+  // Adjust the points to start and end at the circle edges
+  const x1 = fromCenterX + nodeRadius * Math.cos(angle);
+  const y1 = fromCenterY + nodeRadius * Math.sin(angle);
+  const x2 = toCenterX - nodeRadius * Math.cos(angle);
+  const y2 = toCenterY - nodeRadius * Math.sin(angle);
+
+  // Draw the edge line
+  const edgeLine = document.createElement('div');
+  edgeLine.style.position = 'absolute';
+  edgeLine.style.border = '2px solid black';
+  edgeLine.style.transformOrigin = '0% 50%';
+
+  const length = Math.hypot(x2 - x1, y2 - y1);
+  const edgeAngle = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
+
+  edgeLine.style.width = `${length}px`;
+  edgeLine.style.height = '0px';
+  edgeLine.style.left = `${x1}px`;
+  edgeLine.style.top = `${y1}px`;
+  edgeLine.style.transform = `rotate(${edgeAngle}deg)`;
+
+  graphContainer.appendChild(edgeLine);
+
+  // Add weight label
+  const weightLabel = document.createElement('div');
+  weightLabel.classList.add('edge-weight');
+  weightLabel.textContent = weight;
+
+  const midpoint = calculateMidpoint(x1, y1, x2, y2);
+  weightLabel.style.left = `${midpoint.x - 10}px`;
+  weightLabel.style.top = `${midpoint.y - 10}px`;
+
+  graphContainer.appendChild(weightLabel);
+}
+
+
+
+// Clear the graph
+clearGraphButton.addEventListener('click', () => {
+  graphContainer.innerHTML = '';
+  nodes = {};
+  edges = [];
+  edgeFromSelect.innerHTML = '';
+  edgeToSelect.innerHTML = '';
+});
+
+  </script>
+</body>
+</html>

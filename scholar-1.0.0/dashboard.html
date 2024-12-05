@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>DSAPathshala - Sign-In</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-scholar.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="./assets/css/dashboard.css"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+        .sidenav {
+          height: 100%;
+          width: 200px;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+        
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a, .dropdown-btn {
+          padding: 6px 8px 6px 16px;
+          text-decoration: none;
+          font-size: 20px;
+          color: #818181;
+          display: block;
+          border: none;
+          background: none;
+          width: 100%;
+          text-align: left;
+          cursor: pointer;
+          outline: none;
+        }
+        
+        /* On mouse-over */
+        .sidenav a:hover, .dropdown-btn:hover {
+          color: #f1f1f1;
+        }
+        
+        /* Main content */
+        .main {
+          margin-left: 200px; /* Same as the width of the sidenav */
+          font-size: 20px; /* Increased text to enable scrolling */
+          padding: 0px 10px;
+        }
+        
+        /* Add an active class to the active dropdown button */
+        .active {
+          background-color: #9186d4;
+          color: white;
+        }
+        
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+          display: none;
+          background-color: #262626;
+          padding-left: 8px;
+        }
+
+    </style>
+
+  </head>
+
+<body>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky" style="background-color: #7B6AD8; padding: 2%; top: 0%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <div href="index.html" class="logo" style=" margin-right: 7%;">
+                      <img src="./assets/images/title1.png" style="width: 130%;"/>
+                    </div>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Serach Start ***** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Serach Start ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li class="scroll-to-section"><a href="./index.html">Home</a></li>
+                      <li class="scroll-to-section"><a href="./code.html">Code Editor</a></li>
+                      <li class=""scroll-to-section><a href="./practical.html" class="active">Practicals</a></li>
+                      
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- Vertical Bar-->
+  <div class="sidenav" style="padding-top: 8%;">
+    <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 1 
+      <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="./practicals/practical1.html">Theory</a>
+      <a href="./searching/linear_search.html">Visualization</a>
+      <a href="./code.html">CodeEditor</a>
+      <a href="#">MCQ Test</a>
+    </div>
+    <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 2 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 3
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 4 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 5 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Practical</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 6 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 7 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 8 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 9 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 10 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 11 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 12 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 13
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">Code ditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+  </div>
+  <!-- Vertical Bar End-->
+
+    <!-- Practicals Content -->    
+    <div class="container" style="margin-top: 10%;">
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>01</h2>
+              <h3>Practical One</h3>
+              <p>Implementation of Searching.
+                <ul style="color: white;">
+                    <li>Linear Search</li>
+                    <li>Binary Search</li>
+                </ul>
+              </p>
+              <a href="./practicals/practical1.html">Read More</a>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>02</h2>
+              <h3>Practical Two</h3>
+              <p>Implementation of sorting technique. 
+                <ul style="color: white;">
+                    <li>Bubble Sort</li>
+                    <li>Insertion Sort</li>
+                    <li>Merge Sort</li>
+                </ul>
+              </p>
+              <a href="#">Read More</a>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="box">
+            <div class="content">
+              <h2>03</h2>
+              <h3>Practical Three</h3>
+              <p>Implementation of following ADT using Array
+                <ul style="color: white;">
+                    <li>Stack</li>
+                    <li>Queue</li>
+                </ul>
+               </p>
+              <a href="#">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>04</h2>
+                <h3>Practical Four</h3>
+                <p>Implementation of following ADT using Array
+                    <ul style="color: white;">
+                        <li>Circular Queue</li>
+                        <li>Priority Queue</li>
+                    </ul>
+                </p>
+                <a href="#" style="background-color: #2196f3;">Read More</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>05</h2>
+                <h3>Practical Five</h3>
+                <p>Implementation insertion operation on Singly Linked List.</p>
+                <a href="#" style="background-color: #e91e63;">Read More</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>06</h2>
+                <h3>Practical Six</h3>
+                <p>Implementation of deletion operation on Singly Linked List</p>
+                <a href="#" style="background-color: #23c186;">Read More</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>07</h2>
+                <h3>Practical Seven</h3>
+                <p>Implementation of insertion operation on Doubly Linked List.
+                </p>
+                <a href="#" style="background-color: #2196f3;">Read More</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>08</h2>
+                <h3>Practical Eight</h3>
+                <p>Implementation of deletion operation on Doubly Linked List.</p>
+                <a href="#" style="background-color: #e91e63;">Read More</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>09</h2>
+                <h3>Practical Nine</h3>
+                <p>Implementation of following ADT using Linked List
+                    <ul style="color: white;">
+                        <li>Stack</li>
+                        <li>Queue</li>
+                    </ul>
+                   </p>
+                <a href="#" style="background-color: #23c186;">Read More</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>10</h2>
+                <h3>Practical Ten</h3>
+                <p>Implementation of Circular Linked List.
+                </p>
+                <a href="#" style="background-color: #2196f3;">Read More</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>11</h2>
+                <h3>Practical Eleven</h3>
+                <p>Implementation of Tree traversal methods.</p>
+                <a href="#" style="background-color: #e91e63;">Read More</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>12</h2>
+                <h3>Practical Twelve</h3>
+                <p>Implementation of Graph traversal methods.</p>
+                <a href="#" style="background-color: #23c186;">Read More</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>13</h2>
+                <h3>Practical Thirteen</h3>
+                <p>Implementation of Red Black Tree</p>
+                <a href="#" style="background-color: #2196f3;">Read More</a>
+              </div>
+            </div>
+        </div>
+      </div>
+    <!-- Practicals Content End -->
+
+    <script>
+        function w3_open(){
+            document.getElementById("mySidebar").style.display = "block";
+        }   
+
+        function w3_close(){
+        document.getElementById("mySidebar").style.display = "none";
+        }
+
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+              
+        for (i = 0; i < dropdown.length; i++) {
+          dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+              dropdownContent.style.display = "none";
+            } else {
+              dropdownContent.style.display = "block";
+            }
+          });
+        }
+    </script>
+
+</body>
+
+</html>
