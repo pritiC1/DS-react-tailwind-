@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="../https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+	<title>DSAPathshala</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="../assets/css/fontawesome.css">
+	<link rel="stylesheet" href="../assets/css/templatemo-scholar.css">
+	<link rel="stylesheet" href="../assets/css/owl.css">
+	<link rel="stylesheet" href="../assets/css/animate.css">
+	<link rel="stylesheet"href="../https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 586 Scholar
+
+https://templatemo.com/tm-586-scholar
+
+-->
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+	
+}
+
+h1 {
+  color: #6704a4;
+  text-align: center;
+  margin: 20px 0;
+
+}
+
+/* Header Area */
+.header-area {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #6A5ACD; /* Soft purple shade */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	
+}
+
+.header-area .logo h1 {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 15px;
+    display: inline-block;
+}
+
+/* Main Navigation */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+	
+}
+
+.search-input input {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+    transition: 0.3s ease;
+}
+
+.search-input input:focus {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-input i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+/* Sidebar */
+.sidebar {
+    margin-top: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12%;
+    height: 100%;
+    background-color: #584b9e;
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #7B6AD8;
+}
+
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    background-color: #7B6AD8;
+    color: white;
+    text-align: center;
+    padding: 8px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    margin-left:300px;
+}
+
+.circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+}
+
+.circle {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.queue-box {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: #ddd;
+    border: 1px solid #999;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    transition: transform 0.5s ease;
+}
+
+.queue-box.front {
+    border: 3px solid green;
+    background-color: lightgreen;
+}
+
+.queue-box.rear {
+    border: 3px solid red;
+    background-color: lightcoral;
+}
+/* Button Styles */
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7B6AD8;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #5b029a;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px auto;
+   
+}
+input[type="number"], input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+    width: 150px;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+}
+</style>
+</head>
+<body>
+
+
+<!-- Header Section -->
+<header class="header-area">
+  <div class="main-nav">
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <h1>DSAPathshala</h1>
+    </a>
+    
+    <!-- Search Bar -->
+    <div class="search-input">
+      <form id="search" action="#">
+        <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
+        <i class="fa fa-search"></i>
+      </form>
+    </div>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+      <a href="./stack.html">Stack</a>
+      <a href="./queue.html">Queue</a>
+      <a href="./sll.html">Singly LinkedList</a>
+      <a href="./circular dll.html">Circular DLL</a>
+      <a href="./circular sll.html">Circular SLL</a>
+      <a href="./circularqueue.html">Circular Queue</a>
+      <a href="./unweightedgraph.html">Unweighted Graph</a>
+      <a href="./weightedgraph.html">weighted Graph</a>
+      <a href="./directed_graph.html">Directed Graph</a>
+    </div>
+    
+    <!-- Navigation Links -->
+    <ul class="nav">
+      <li><a href="../index.html" class="active">Home</a></li>
+      <li><a href="../code.html">Code Editor</a></li>
+      <li><a href="../sign-in.html">Sign-In</a></li>
+      <li><a href="../sign-up.html">Sign-Up</a></li>
+    </ul>
+  </div>
+</header>
+
+    <div class="container">
+        <h1>Circular Queue Visualization</h1>
+        
+        <!-- Queue Size Input -->
+        <div>
+            <label for="queue-size">Enter Queue Size: </label>
+            <input type="number" id="queue-size" min="1" />
+            <button onclick="setQueueSize()">Set Size</button>
+        </div>
+
+        <!-- Queue Visualization Container -->
+        <div class="circle-container">
+            <div id="queue-container" class="circle"></div>
+        </div>
+
+        <!-- User Interaction Buttons -->
+        <div>
+            <label for="enqueue-input">Enter Value to Enqueue: </label>
+            <input type="text" id="enqueue-input" />
+            <button onclick="enqueue()">Enqueue</button>
+            <button onclick="dequeue()">Dequeue</button>
+            <button onclick="clearQueue()">Clear Queue</button>
+        </div>
+
+        <!-- Message Display -->
+        <div id="message"></div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <p>Made with <i class="fas fa-heart"></i> by HackBreakers!</p>
+    </div>
+    <script>
+        let queue = [];
+let front = -1;
+let rear = -1;
+let queueSize = 0;
+
+// Set the size of the queue
+function setQueueSize() {
+    const size = document.getElementById('queue-size').value;
+    if (size < 1) {
+        alert("Please enter a valid queue size.");
+        return;
+    }
+    queueSize = parseInt(size);
+    queue = new Array(queueSize).fill(null);
+    front = rear = -1;
+    updateQueueVisualization();
+    document.getElementById('message').innerHTML = '';
+}
+
+// Enqueue operation
+function enqueue() {
+    const value = document.getElementById('enqueue-input').value.trim();
+    if (!value) return;
+
+    if ((rear + 1) % queueSize === front) {
+        document.getElementById('message').innerHTML = 'Queue Overflow!';
+        return;
+    }
+
+    if (front === -1) front = 0;
+
+    rear = (rear + 1) % queueSize;
+    queue[rear] = value;
+
+    updateQueueVisualization();
+    document.getElementById('enqueue-input').value = '';
+}
+
+// Dequeue operation
+function dequeue() {
+    if (front === -1) {
+        document.getElementById('message').innerHTML = 'Queue Underflow!';
+        return;
+    }
+
+    queue[front] = null;
+
+    if (front === rear) {
+        front = rear = -1;
+    } else {
+        front = (front + 1) % queueSize;
+    }
+
+    updateQueueVisualization();
+}
+
+// Clear the queue
+function clearQueue() {
+    queue = new Array(queueSize).fill(null);
+    front = rear = -1;
+    updateQueueVisualization();
+    document.getElementById('message').innerHTML = '';
+}
+
+// Update the queue visualization
+function updateQueueVisualization() {
+    const container = document.getElementById('queue-container');
+    container.innerHTML = '';
+
+    const angleStep = 360 / queueSize;
+    for (let i = 0; i < queueSize; i++) {
+        const queueElement = document.createElement('div');
+        queueElement.classList.add('queue-box');
+
+        if (queue[i] !== null) {
+            queueElement.textContent = queue[i];
+            if (i === front) queueElement.classList.add('front');
+            if (i === rear) queueElement.classList.add('rear');
+        }
+
+        const angle = i * angleStep;
+        queueElement.style.transform = `rotate(${angle}deg) translate(120px) rotate(-${angle}deg)`;
+
+        container.appendChild(queueElement);
+    }
+}
+
+    </script>
+</body>
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/js/isotope.min.js"></script>
+<script src="../assets/js/owl-carousel.js"></script>
+<script src="../assets/js/counter.js"></script>
+<script src="../assets/js/custom.js"></script>
+</html>
