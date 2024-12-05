@@ -1,110 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linked List Animation</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background-color: #f0f0f0;
-    }
+  <head>
 
-    /* Header Section */
-    .header-area {
-      position: sticky;
-      top: 0;
-      background-color: #6A5ACD;
-      color: white;
-      padding: 20px;
-      z-index: 1000;
-      display: flex;
-      justify-content: flex-end; /* Align items to the right */
-      align-items: center;
-    }
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="../https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    .header-area .logo h1 {
-      font-size: 24px;
-      margin: 0;
-      padding: 2px;
-      position: absolute;
-      left: 20px; /* Keep the logo on the left side */
-    }
+	<title>DSAPathshala</title>
 
-    .nav-links {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
+	<!-- Bootstrap core CSS -->
+	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    .nav-links li {
-      list-style: none;
-      margin-left: 20px;
-    }
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-    }
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="../assets/css/fontawesome.css">
+	<link rel="stylesheet" href="../assets/css/templatemo-scholar.css">
+	<link rel="stylesheet" href="../assets/css/owl.css">
+	<link rel="stylesheet" href="../assets/css/animate.css">
+	<link rel="stylesheet"href="../https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
 
-    .nav-links a:hover {
-      color: #ddd;
-    }
+TemplateMo 586 Scholar
 
-    /* Sidebar Styling */
-    .sidebar {
-      position: fixed;
-      top: 60px; /* Adjust sidebar position below the header */
-      left: 0;
-      width: 200px;
-      height: 100%;
-      background-color: #584b9e;
-      color: white;
-      padding-top: 20px;
-      display: flex;
-      flex-direction: column;
-      z-index: 500; /* Sidebar should be below the header */
-    }
+https://templatemo.com/tm-586-scholar
 
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      transition: 0.3s;
-    }
+-->
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    .sidebar a:hover {
-      background-color: #7B6AD8;
-    }
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+	
+}
 
-    /* Main Content */
-    .main-content {
+h1 {
+    color: #6704a4;
+    text-align: center;
+    margin: 20px 0;
+	
+}
+
+/* Header Area */
+.header-area {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #6A5ACD; /* Soft purple shade */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	
+}
+
+.header-area .logo h1 {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 15px;
+    display: inline-block;
+}
+
+/* Main Navigation */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+	
+}
+
+.search-input input {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+    transition: 0.3s ease;
+}
+
+.search-input input:focus {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-input i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Button Styles */
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7B6AD8;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #5b029a;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
+
+/* Sidebar */
+.sidebar {
+    margin-top: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12%;
+    height: 100%;
+    background-color: #584b9e;
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #7B6AD8;
+}
+
+   /* Main Content */
+   .main-content {
       margin-left: 220px; /* Ensure content doesn't overlap sidebar */
       padding: 20px;
       flex-grow: 1;
       margin-top: 60px; /* Ensure main content doesn't overlap header */
     }
 
-    .footer {
-      margin-top: auto;
-      background-color: #7B6AD8;
-      color: white;
-      text-align: center;
-      padding: 10px;
-    }
-
-    h1 {
+/* Footer */
+.footer {
+    margin-top: auto;
+    background-color: #7B6AD8;
+    color: white;
+    text-align: center;
+    padding: 8px;
+}
+h1 {
       text-align: center;
       margin: 20px 0;
       color: #6704a4;
@@ -147,14 +222,14 @@
       padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
-      background-color: #4CAF50;
+      background-color: #007bff;
       color: white;
       border: none;
       border-radius: 5px;
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #0056b3;
     }
 
     .list-display {
@@ -194,33 +269,54 @@
         transform: scale(1);
       }
     }
-  </style>
+</style>
 </head>
 <body>
-  <!-- Header Section -->
-  <div class="header-area">
-    <div class="logo">
-      <h1>Linked List Operations</h1>
+
+
+<!-- Header Section -->
+<header class="header-area">
+  <div class="main-nav">
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <h1>DSAPathshala</h1>
+    </a>
+    
+    <!-- Search Bar -->
+    <div class="search-input">
+      <form id="search" action="#">
+        <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
+        <i class="fa fa-search"></i>
+      </form>
     </div>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+      <a href="./stack.html">Stack</a>
+      <a href="./queue.html">Queue</a>
+      <a href="./sll.html">Singly LinkedList</a>
+      <a href="./circular dll.html">Circular DLL</a>
+      <a href="./circular sll.html">Circular SLL</a>
+      <a href="./circularqueue.html">Circular Queue</a>
+      <a href="./unweightedgraph.html">Unweighted Graph</a>
+      <a href="./weightedgraph.html">Weighted Graph</a>
+      <a href="./undirected_graph.html">Undirected Graph</a>
+      <a href="./directe_graph.html">Directed Graph</a>
+  </div>
+    
+    <!-- Navigation Links -->
+    <ul class="nav">
+      <li><a href="../index.html" class="active">Home</a></li>
+      <li><a href="../code.html">Code Editor</a></li>
+      <li><a href="../sign-in.html">Sign-In</a></li>
+      <li><a href="../sign-up.html">Sign-Up</a></li>
     </ul>
   </div>
+</header>
 
-  <!-- Sidebar Section -->
-  <div class="sidebar">
-    <a href="#">Insert at Beginning</a>
-    <a href="#">Insert at End</a>
-    <a href="#">Insert at Location</a>
-    <a href="#">Delete from Beginning</a>
-    <a href="#">Delete from End</a>
-    <a href="#">Delete from Location</a>
-  </div>
 
-  <!-- Main Content Section -->
-  <div class="main-content">
+<div class="main-content">
+  <h1>Signly Linked List Operations</h1>
     <div class="controls">
       <!-- Row with buttons for insertion operations -->
       <div class="button-row">
@@ -267,111 +363,121 @@
     <div id="listDisplay" class="list-display"></div>
   </div>
 
-  <!-- Footer Section -->
-  <div class="footer">
-    <p>&copy; Made with ❤ by HackBreakers!</p>
+  <!-- Footer -->
+<div class="footer">
+    <p>Made with <i class="fas fa-heart"></i> by HackBreakers!</p>
   </div>
 
+
   <script>
-    let list = [];
+ let list = [];
 
-    function updateListDisplay() {
-      const listDisplay = document.getElementById('listDisplay');
-      listDisplay.innerHTML = ''; // Clear the list display first
+function updateListDisplay() {
+  const listDisplay = document.getElementById('listDisplay');
+  listDisplay.innerHTML = ''; // Clear the list display first
 
-      // Create a new 'node' element for each item in the list
-      list.forEach((node, index) => {
-        const nodeElement = document.createElement('div');
-        nodeElement.classList.add('node');
-        nodeElement.textContent = node;
-        listDisplay.appendChild(nodeElement);
-      });
-    }
+  // Create a new 'node' element for each item in the list
+  list.forEach((node, index) => {
+    const nodeElement = document.createElement('div');
+    nodeElement.classList.add('node');
+    nodeElement.textContent = node;
+    listDisplay.appendChild(nodeElement);
+  });
+}
 
-    function beginInsert() {
-      const value = document.getElementById("beginInsertValue").value;
-      if (value !== "") {
-        list.unshift(value);  // Insert at the beginning
-        updateListDisplay();
-        document.getElementById("beginInsertValue").value = "";  // Clear input box
-        toggleInsert('begin');
-      } else {
-        alert("Please enter a value");
-      }
-    }
+function beginInsert() {
+  const value = document.getElementById("beginInsertValue").value;
+  if (value !== "") {
+    list.unshift(value);  // Insert at the beginning
+    updateListDisplay();
+    document.getElementById("beginInsertValue").value = "";  // Clear input box
+    toggleInsert('begin');
+  } else {
+    alert("Please enter a value");
+  }
+}
 
-    function endInsert() {
-      const value = document.getElementById("endInsertValue").value;
-      if (value !== "") {
-        list.push(value);  // Insert at the end
-        updateListDisplay();
-        document.getElementById("endInsertValue").value = "";  // Clear input box
-        toggleInsert('end');
-      } else {
-        alert("Please enter a value");
-      }
-    }
+function endInsert() {
+  const value = document.getElementById("endInsertValue").value;
+  if (value !== "") {
+    list.push(value);  // Insert at the end
+    updateListDisplay();
+    document.getElementById("endInsertValue").value = "";  // Clear input box
+    toggleInsert('end');
+  } else {
+    alert("Please enter a value");
+  }
+}
 
-    function locationInsert() {
-      const value = document.getElementById("locationInsertValue").value;
-      const location = parseInt(document.getElementById("locationInsertIndex").value) - 1;
-      if (value !== "" && !isNaN(location) && location >= 0 && location <= list.length) {
-        list.splice(location, 0, value);  // Insert at specified location
-        updateListDisplay();
-        document.getElementById("locationInsertValue").value = "";  // Clear input box
-        document.getElementById("locationInsertIndex").value = "";  // Clear index input box
-        toggleInsert('location');
-      } else {
-        alert("Invalid input or location");
-      }
-    }
+function locationInsert() {
+  const value = document.getElementById("locationInsertValue").value;
+  const location = parseInt(document.getElementById("locationInsertIndex").value) - 1;
+  if (value !== "" && !isNaN(location) && location >= 0 && location <= list.length) {
+    list.splice(location, 0, value);  // Insert at specified location
+    updateListDisplay();
+    document.getElementById("locationInsertValue").value = "";  // Clear input box
+    document.getElementById("locationInsertIndex").value = "";  // Clear index input box
+    toggleInsert('location');
+  } else {
+    alert("Invalid input or location");
+  }
+}
 
-    function beginDelete() {
-      if (list.length > 0) {
-        const deletedValue = list.shift();  // Delete from the beginning
-        alert(`Deleted: ${deletedValue}`);
-        updateListDisplay();
-      } else {
-        alert("List is empty");
-      }
-    }
+function beginDelete() {
+  if (list.length > 0) {
+    const deletedValue = list.shift();  // Delete from the beginning
+    alert(`Deleted: ${deletedValue}`);
+    updateListDisplay();
+  } else {
+    alert("List is empty");
+  }
+}
 
-    function endDelete() {
-      if (list.length > 0) {
-        const deletedValue = list.pop();  // Delete from the end
-        alert(`Deleted: ${deletedValue}`);
-        updateListDisplay();
-      } else {
-        alert("List is empty");
-      }
-    }
+function endDelete() {
+  if (list.length > 0) {
+    const deletedValue = list.pop();  // Delete from the end
+    alert(`Deleted: ${deletedValue}`);
+    updateListDisplay();
+  } else {
+    alert("List is empty");
+  }
+}
 
-    function locationDelete() {
-      const location = parseInt(document.getElementById("locationDeleteIndex").value) - 1;
-      if (!isNaN(location) && location >= 0 && location < list.length) {
-        const deletedValue = list.splice(location, 1)[0];  // Delete from a specified location
-        alert(`Deleted: ${deletedValue}`);
-        updateListDisplay();
-      } else {
-        alert("Invalid location");
-      }
-    }
+function locationDelete() {
+  const location = parseInt(document.getElementById("locationDeleteIndex").value) - 1;
+  if (!isNaN(location) && location >= 0 && location < list.length) {
+    const deletedValue = list.splice(location, 1)[0];  // Delete from a specified location
+    alert(`Deleted: ${deletedValue}`);
+    updateListDisplay();
+  } else {
+    alert("Invalid location");
+  }
+}
 
-    function toggleInsert(type) {
-      // Hide all input containers first
-      document.getElementById("beginInsertContainer").classList.remove("show");
-      document.getElementById("endInsertContainer").classList.remove("show");
-      document.getElementById("locationInsertContainer").classList.remove("show");
+function toggleInsert(type) {
+  // Hide all input containers first
+  document.getElementById("beginInsertContainer").classList.remove("show");
+  document.getElementById("endInsertContainer").classList.remove("show");
+  document.getElementById("locationInsertContainer").classList.remove("show");
 
-      // Show the relevant input container based on the type
-      if (type === 'begin') {
-        document.getElementById("beginInsertContainer").classList.add("show");
-      } else if (type === 'end') {
-        document.getElementById("endInsertContainer").classList.add("show");
-      } else if (type === 'location') {
-        document.getElementById("locationInsertContainer").classList.add("show");
-      }
-    }
+  // Show the relevant input container based on the type
+  if (type === 'begin') {
+    document.getElementById("beginInsertContainer").classList.add("show");
+  } else if (type === 'end') {
+    document.getElementById("endInsertContainer").classList.add("show");
+  } else if (type === 'location') {
+    document.getElementById("locationInsertContainer").classList.add("show");
+  }
+}
   </script>
+  <!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/js/isotope.min.js"></script>
+<script src="../assets/js/owl-carousel.js"></script>
+<script src="../assets/js/counter.js"></script>
+<script src="../assets/js/custom.js"></script>
 </body>
+
 </html>
