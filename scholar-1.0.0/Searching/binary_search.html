@@ -40,72 +40,68 @@ body {
     flex-direction: column;
     min-height: 100vh;
     color: #333;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    
 }
 
 h1 {
-    font-size: 40px;
-    margin-top: 20px;
-    color: #2c3e50;
-    text-align: center;
-    font-weight: 600;
+  color: #6704a4;
+  text-align: center;
+  margin: 20px 0;
+
 }
 
 /* Header Area */
 .header-area {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: #6A5ACD; /* Soft purple shade */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #6A5ACD; /* Soft purple shade */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 .header-area .logo h1 {
-    font-size: 24px;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-left: 15px;
-    display: inline-block;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: 15px;
+  display: inline-block;
 }
 
 /* Main Navigation */
-/* Main Navigation */
 .main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-	
-	
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
 }
 
 .search-input input {
-    padding: 8px 20px;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    font-size: 14px;
-    color: #333;
-    background-color: white;
-    transition: 0.3s ease;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+  color: #333;
+  background-color: white;
+  transition: 0.3s ease;
 }
 
 .search-input input:focus {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .search-input i {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    cursor: pointer;
-    display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  cursor: pointer;
+  display: inline-block;
 }
-
 /* Array Container */
 .array-container {
     display: flex;
@@ -228,30 +224,30 @@ h1 {
 
 /* Sidebar */
 .sidebar {
-    margin-top: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 12%;
-    height: 100%;
-    background-color: #584b9e;
-    color: white;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  margin-top: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12%;
+  height: 100%;
+  background-color: #584b9e;
+  color: white;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .sidebar a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 10px 20px;
-    transition: 0.3s;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: 0.3s;
 }
 
 .sidebar a:hover {
-    background-color: #7B6AD8;
+  background-color: #7B6AD8;
 }
 
 
@@ -262,7 +258,7 @@ h1 {
     justify-content: center;
     
     padding: 10px;
-	margin-top:325px;
+	margin-top:290px;
 	margin-left:220px;
     background-color: #f8f9fa; /* Light gray background */
     border: 1px solid #ddd; /* Subtle border */
@@ -341,8 +337,10 @@ h1 {
     <div class="sidebar">
       <a href="./linear_search.html">Linear Search</a>
       <a href="./binary_search.html">Binary Search</a>
-      <a href="./heap.html">Jump search</a>
-      <a href="./radix.html">Ternary Search</a>
+      <a href="./jump_search.html">Jump search</a>
+      <a href="./bfs_search.html">Breadth First Search</a>
+      <a href="./bst.html">Binary Search Tree</a>
+      <a href="./dfs.html">Depth First Search</a>
     </div>
     
     <!-- Navigation Links -->
