@@ -19,7 +19,8 @@
 	<link rel="stylesheet" href="../assets/css/owl.css">
 	<link rel="stylesheet" href="../assets/css/animate.css">
 	<link rel="stylesheet"href="../https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
+    <link rel="stylesheet" href="https://unpkg.com/vis-network/styles/vis-network.min.css">
+    <!--
 
 TemplateMo 586 Scholar
 
@@ -164,12 +165,12 @@ button:disabled {
 }
 
    /* Main Content */
-   .main-content {
-      margin-left: 220px; /* Ensure content doesn't overlap sidebar */
-      padding: 20px;
-      flex-grow: 1;
-      margin-top: 60px; /* Ensure main content doesn't overlap header */
-    }
+.main-content {
+    margin-left: 220px; /* Ensure content doesn't overlap sidebar */
+    padding: 20px;
+    flex-grow: 1;
+    margin-top: 60px; /* Ensure main content doesn't overlap header */
+}
 
 /* Footer */
 .footer {
@@ -179,72 +180,36 @@ button:disabled {
     text-align: center;
     padding: 8px;
 }
-.main-content {
-    margin-left: 220px; /* Ensure content doesn't overlap sidebar */
-    padding: 20px;
-}
 
-h1 {
-    text-align: center;
-    margin: 20px 0;
-    color: #6704a4;
-}
+#network {
+      width: 100%;
+      height: 400px;
+      border: 1px solid lightgray;
+      margin-bottom: 20px;
+    }
 
-/* Queue Controls */
-.queue-controls {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
+    #details {
+      margin: 10px auto;
+      width: 90%;
+      background: #ffffff;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
 
-.queue-controls button {
-    background-color: #7B6AD8;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-.queue-controls button:hover {
-    background-color: #5b029a;
-}
-
-/* Queue Size Display */
-.queue-size {
-    text-align: center;
-    font-size: 20px;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* Queue Visualization */
-.queue-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.queue-element {
-    width: 60px;
-    height: 60px;
-    background-color: skyblue;
-    text-align: center;
-    font-weight: bold;
-    line-height: 60px;
-    font-size: 18px;
-    border: 2px solid #333;
-    transition: background-color 0.3s;
-}
-
-.queue-element.enqueued {
-    background-color: lightgreen;
-}
+    button:hover {
+      background-color: #0056b3;
+    }
 </style>
 </head>
 <body>
@@ -291,107 +256,96 @@ h1 {
 </header>
 
 
-<!-- Main Content -->
-<div class="main-content">
-    <h1>Queue Operations</h1>
+<main>
+    <div class="container mt-5">
+      <h1>Undirected Graph Visualization</h1>
+      <p>An undirected graph consists of vertices connected by undirected edges. Each edge is represented as an **unordered pair** ((A, B)), indicating that there is a connection between (A) and (B), but without direction.</p>
 
-    <!-- Set Initial Queue Size -->
-    <div class="queue-controls">
-        <input type="number" id="queueSizeInput" placeholder="Enter queue size" />
-        <button onclick="setQueueSize()">Set Queue Size</button>
+      <div id="network"></div>
+
+      <div id="details">
+        <h2>Graph Details</h2>
+        <p id="vertices"><strong>Vertices:</strong> Loading...</p>
+        <p id="edges"><strong>Edges:</strong> Loading...</p>
+      </div>
+
+      <button onclick="generateNewGraph()">Generate New Graph</button>
     </div>
+  </main>
 
-    <!-- Queue Controls -->
-    <div class="queue-controls">
-        <input type="number" id="queueInput" placeholder="Enter a number" />
-        <button onclick="enqueue()">Enqueue</button>
-        <button onclick="dequeue()">Dequeue</button>
-        <button onclick="resetQueue()">Reset Queue</button>
-    </div>
-
-    <!-- Queue Size -->
-    <div class="queue-size" id="queueSizeDisplay">Queue Size: 0</div>
-
-    <!-- Queue Visualization -->
-    <div class="queue-container" id="queueContainer"></div>
-</div>
-
-
-  <!-- Footer -->
+<!-- Footer -->
 <div class="footer">
     <p>Made with <i class="fas fa-heart"></i> by HackBreakers!</p>
   </div>
 
 
   <script>
-        let queue = [];
-        let maxSize = 0;
-
-        // Render Queue
-        function renderQueue() {
-            const queueContainer = document.getElementById("queueContainer");
-            queueContainer.innerHTML = "";
-            queue.forEach((item, index) => {
-                const element = document.createElement("div");
-                element.className = "queue-element";
-                element.textContent = item;
-                if (index === 0) element.style.backgroundColor = "lightgreen"; // Front of the queue
-                queueContainer.appendChild(element);
-            });
-            updateQueueSize();
+    // Function to generate random undirected graph data
+    function generateRandomGraph(nodeCount, edgeCount) {
+      const nodes = [];
+      const edges = [];
+  
+      for (let i = 0; i < nodeCount; i++) {
+        nodes.push({ id: i, label: `Node ${i}` });
+      }
+  
+      while (edges.length < edgeCount) {
+        const from = Math.floor(Math.random() * nodeCount);
+        const to = Math.floor(Math.random() * nodeCount);
+  
+        if (from !== to && !edges.some(edge => (edge.from === from && edge.to === to) || (edge.from === to && edge.to === from))) {
+          edges.push({ from, to });
         }
-
-        // Update Queue Size
-        function updateQueueSize() {
-            const queueSizeDisplay = document.getElementById("queueSizeDisplay");
-            queueSizeDisplay.textContent = `Queue Size: ${queue.length}`;
+      }
+  
+      return { nodes, edges };
+    }
+  
+    function displayDetails(graphData) {
+      const verticesSet = new Set(graphData.nodes.map(node => node.label));
+      const edgesList = graphData.edges.map(edge => `(${Math.min(edge.from, edge.to)}, ${Math.max(edge.from, edge.to)})`);
+      document.getElementById("vertices").innerHTML = `<strong>Vertices:</strong> { ${[...verticesSet].join(", ")} }`;
+      document.getElementById("edges").innerHTML = `<strong>Edges:</strong> [ ${edgesList.join(", ")} ]`;
+    }
+  
+    const container = document.getElementById("network");
+    let network;
+  
+    function generateNewGraph() {
+      const graphData = generateRandomGraph(6, 8);
+      const data = {
+        nodes: new vis.DataSet(graphData.nodes),
+        edges: new vis.DataSet(graphData.edges),
+      };
+  
+      const options = {
+        edges: {
+          color: "#ccc",
+        },
+        nodes: {
+          shape: "circle",
+          color: {
+            background: "#61bffc",
+            border: "#007bff",
+          },
+          font: { color: "#000" },
+        },
+        physics: { enabled: true },
+        interaction: {
+          zoomView: false,  // Disables zooming
+          dragView: true,   // Allows dragging the graph
+          hover: true,      // Enable hover interactions
+        },
+        layout: {
+          improvedLayout: false, // Keeps the layout fixed
         }
-
-        // Set Queue Size
-        function setQueueSize() {
-            const size = parseInt(document.getElementById("queueSizeInput").value);
-            if (size > 0) {
-                maxSize = size; // Set max size
-                queue = []; // Reset queue
-                renderQueue();
-            } else {
-                alert("Please enter a valid number greater than 0.");
-            }
-        }
-
-        // Enqueue Operation
-        function enqueue() {
-            const inputValue = document.getElementById("queueInput").value;
-            if (queue.length < maxSize) {
-                if (inputValue !== "") {
-                    queue.push(inputValue);
-                    renderQueue();
-                    document.getElementById("queueInput").value = ""; // Clear input field
-                }
-            } else {
-                alert(`Queue is full! Maximum size is ${maxSize}.`);
-            }
-        }
-
-        // Dequeue Operation
-        function dequeue() {
-            if (queue.length > 0) {
-                queue.shift();
-                renderQueue();
-            } else {
-                alert("Queue is empty!");
-            }
-        }
-
-        // Reset Queue
-        function resetQueue() {
-            queue = [];
-            renderQueue();
-        }
-
-        // Initial Rendering
-        renderQueue();
-
+      };
+  
+      network = new vis.Network(container, data, options);
+      displayDetails(graphData);
+    }
+  
+    generateNewGraph();
   </script>
   <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
@@ -401,6 +355,7 @@ h1 {
 <script src="../assets/js/owl-carousel.js"></script>
 <script src="../assets/js/counter.js"></script>
 <script src="../assets/js/custom.js"></script>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 </body>
 
 </html>

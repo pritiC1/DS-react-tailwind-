@@ -68,20 +68,6 @@
                 <div class="col-md-7">
                   <input type="email" class="form-control" id="email" placeholder="Enter your email" required style="padding: 2%; font-size: 16px;">
                 </div>
-                
-
-              <!-- OTP Input and Verification Section
-              <div class="mb-3" id="otpSection" style="display: none;">
-                <label for="otp" class="form-label" style="font-size: medium;">Enter OTP</label>
-                <div class="mb-3 row">
-                  <div class="col-md-7">
-                    <input type="number" class="form-control" id="otp" placeholder="Enter OTP" required style="padding: 2%; font-size: 16px;" inputmode="numeric" pattern="[0-9]*" maxlength="6">
-                  </div>
-                  <div class="col-md-4">
-                    <button type="button" class="btn btn-primary mt-2" id="verifyOtpBtn" style="font-size: 16px;">Verify OTP</button>
-                  </div>
-                </div>
-              </div> -->
 
               <div class="mb-3">
                 <label for="username" class="form-label" style="font-size: medium;">Username</label>
@@ -228,7 +214,7 @@
             messageElement.innerHTML = "Registration successful! Redirecting to OTP verification...";
             messageElement.style.color = "green"; // Green for success
             setTimeout(() => {
-              window.location.href = "./verify-otp.html"; // Redirect after a delay
+              window.location.href = "./VerifyOTP.html"; // Redirect after a delay
             }, 2000); // 2-second delay
           } else {
             throw new Error("Unexpected response format");
