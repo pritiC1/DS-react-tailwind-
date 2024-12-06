@@ -1,93 +1,67 @@
 body {
   font-family: Arial, sans-serif;
-  text-align: center;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
-  padding: 0;
-  background-color: #f7f7f7;
 }
 
-h1 {
-  margin: 20px 0;
-  color: #2c3e50;
+.container {
+  text-align: center;
+  width: 80%;
 }
 
-#controls {
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#input-array {
-  width: 30%;
-  max-width: 500px;
-  padding: 10px;
+input, button {
   margin: 10px;
+  padding: 8px;
   font-size: 16px;
 }
 
-#tree-container {
-  margin: 20px auto;
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.heap-container {
+  margin-top: 20px;
+  position: relative;
   width: 100%;
-  padding: 10px;
-  background-color: white;
-  border-radius: 10px;
-  overflow-x: auto; /* Allows horizontal scrolling */
-  white-space: nowrap; /* Prevents wrapping of elements */
-}
-
-.array-container {
-  display: flex;
-  justify-content: center;  /* Centering elements horizontally */
-  margin-bottom: 20px;
-  flex-wrap: nowrap; /* Prevents wrapping of elements */
-}
-
-.sublist {
+  height: 500px;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  align-items: flex-start;
+  position: relative;
 }
 
-.array-element {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: lightgray;
-  border: 1px solid black;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: transform 0.3s, width 0.3s, height 0.3s;
-  padding: 5px 10px;
-  min-width: 50px;
-  min-height: 50px;
-  font-size: 14px; /* Moderate size for visibility */
-}
-
-.unsorted {
-  background-color: lightblue;
-}
-
-.merging {
-  background-color: yellow;
-}
-
-.sorted {
-  background-color: lightgreen;
-}
-
-button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  font-size: 16px;
+.tree-node {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: #4CAF50;
   color: white;
-  background-color: #3498db;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+  font-size: 18px;
+  transition: transform 0.3s ease;
 }
 
-button:hover {
-  background-color: #2980b9;
+#currentArray {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+#operationExplanation {
+  margin-top: 20px;
+  font-size: 16px;
+  font-style: italic;
+}
+.tree-link {
+  position: absolute;
+  height: 2px;
+  background-color: black;
+  transform-origin: 0 0;
+  transition: transform 0.3s ease;
 }
