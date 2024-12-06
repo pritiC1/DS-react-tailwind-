@@ -287,9 +287,9 @@ Header Style
 .background-header {
   background-color: #7a6ad8 !important;
   border-radius: 0px 0px 25px 25px;
-  height: 80px!important;
+  height: 110px!important;
   position: fixed!important;
-  top: 0!important;
+  top: 0 !important;
   left: 0;
   right: 0;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.15)!important;
@@ -301,8 +301,8 @@ Header Style
 
 .header-area {
   position: absolute;
-  background-color: transparent;
-  top: 40px;
+  background-color: #7a6ad8;
+  top: 30px;
   left: 0;
   right: 0;
   z-index: 100;
@@ -621,6 +621,7 @@ Header Style
   }
   .header-area .container {
     padding: 0px;
+    
   }
   .header-area .logo {
     margin-left: 0px;
@@ -667,7 +668,6 @@ Banner Style
 */
 
 .main-banner {
-  background-image: url(../images/banner-bg.jpg);
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -776,7 +776,7 @@ Banner Style
   font-size: 24px;
   display: inline-block;
   color: #fff;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: black;
   border-radius: 50%;
   opacity: 1;
   transition: all .3s;
@@ -790,7 +790,7 @@ Banner Style
 .main-banner .owl-nav .owl-prev i:hover,
 .main-banner .owl-nav .owl-next i:hover {
   opacity: 1;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(17, 14, 14, 0.5);
 }
 
 
