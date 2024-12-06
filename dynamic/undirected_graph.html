@@ -141,9 +141,9 @@ button:disabled {
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    margin-top:-16px;
     flex-wrap: wrap;
-    margin: 20px auto;
+   
 }
 
 /* Sidebar */
@@ -254,7 +254,7 @@ button:disabled {
         <a href="./unweightedgraph.html">Unweighted Graph</a>
         <a href="./weightedgraph.html">Weighted Graph</a>
         <a href="./undirected_graph.html">Undirected Graph</a>
-        <a href="./directe_graph.html">Directed Graph</a>
+        <a href="./directed_graph.html">Directed Graph</a>
     </div>
     
     <!-- Navigation Links -->
@@ -280,8 +280,10 @@ button:disabled {
         <p id="vertices"><strong>Vertices:</strong> Loading...</p>
         <p id="edges"><strong>Edges:</strong> Loading...</p>
       </div>
-
-      <button onclick="generateNewGraph()">Generate New Graph</button>
+    <div class="button-container">
+    <button onclick="generateNewGraph()">Generate New Graph</button>
+    </div>
+      
     </div>
   </main>
 
