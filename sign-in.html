@@ -16,14 +16,7 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
-
-TemplateMo 586 Scholar
-
-https://templatemo.com/tm-586-scholar
-
--->
-  </head>
+</head>
 
 <body>
 
@@ -76,7 +69,7 @@ https://templatemo.com/tm-586-scholar
                 <h3>Sign-In</h3>
               </div>
               <div class="card-body">
-                <form>
+                <form id="signInForm">
                   <div class="mb-3">
                     <label for="username" class="form-label" style="font-size: large;">Username</label>
                     <input type="text" class="form-control" id="username" placeholder="Enter your username" required style="padding: 2%; background-color: white; border: 2px solid #ccc;">
@@ -90,6 +83,11 @@ https://templatemo.com/tm-586-scholar
                     <a href="./sign-up.html">Don't have an account? Sign-Up</a>
                   </div>
                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
               </div>
     
     
@@ -121,15 +119,23 @@ https://templatemo.com/tm-586-scholar
                     }
                 })
                 .then(data => {
-                    alert('Sign-In successful!');
-                    console.log('Access Token:', data.access_token);
-                    console.log('Refresh Token:', data.refresh_token);
-                    // Optionally, redirect to another page
-                    window.location.href = './dashboard.html'; // Update with your dashboard page
-                })
-                .catch(error => {
-                    alert(error.message);
-                });
+    console.log('API Response:', data); // Log the response to inspect its structure
+
+    if (data.access && data.refresh) { // Update to check for 'access' and 'refresh'
+        alert('Sign-In successful!');
+        console.log('Access Token:', data.access);
+        console.log('Refresh Token:', data.refresh);
+        localStorage.setItem('access_token', data.access); // Save the access token
+        localStorage.setItem('refresh_token', data.refresh); // Save the refresh token
+
+        // Redirect to dashboard
+        window.location.href = './dashboard.html';
+    } else {
+        throw new Error('Tokens not received');
+    }
+})
+
+
         });
     </script>
 </body>
