@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="../https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="./assets/images/chatbot.jpeg" type="image/icon type">
+	<title>DSAPathshala</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="../assets/css/fontawesome.css">
+	<link rel="stylesheet" href="../assets/css/templatemo-scholar.css">
+	<link rel="stylesheet" href="../assets/css/owl.css">
+	<link rel="stylesheet" href="../assets/css/animate.css">
+	<link rel="stylesheet"href="../https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 586 Scholar
+
+https://templatemo.com/tm-586-scholar
+
+-->
+<style>
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body and Header Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+}
+
+h1 {
+    color: #6704a4;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Header Area */
+.header-area {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #6A5ACD; /* Soft purple shade */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-area .logo h1 {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 15px;
+    display: inline-block;
+}
+
+/* Navigation */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.search-input input {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+    transition: 0.3s ease;
+}
+
+.search-input input:focus {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-input i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Controls Section */
+#controls {
+    margin: 30px auto;
+    display: flex;
+	margin-left:188px;
+	
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Visualization */
+#visualization {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    gap: 5px;
+}
+
+.block {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #000;
+	background-color:#22c8dc ;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.block.current {
+    background-color: #f0ad4e; /* Highlight Current */
+}
+
+.block.checked {
+    background-color: #5cb85c; /* Checked (Green) */
+    color: #fff;
+}
+
+.block.low {
+    background-color: #5bc0de; /* Light Blue for Low */
+    color: #fff;
+}
+
+.block.high {
+    background-color: #f0ad4e; /* Orange for High */
+    color: #fff;
+}
+
+/* Status Section */
+#status {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+	
+    color: #333;
+}
+
+
+/* Button Styles */
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7B6AD8;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #5b029a;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+	
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
+
+/* Sidebar */
+.sidebar {
+    margin-top: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12%;
+    height: 100%;
+    background-color: #584b9e;
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #7B6AD8;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    background-color: #7B6AD8;
+    color: white;
+    text-align: center;
+    padding: 8px;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-input {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .search-input input {
+        width: calc(100% - 20px);
+    }
+}
+
+/* Speed Control */
+.speed-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 10px;
+	margin-top:255px;
+	margin-left:200px;
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 8px;
+    max-width: 400px; /* Width of the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.speed-control label {
+    font-size: 16px;
+    color: #333; /* Dark text color */
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.speed-control input[type="range"] {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 6px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #3498db 0%, #8e44ad 100%);
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="header-area">
+  <div class="main-nav">
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <h1>DSAPathshala</h1>
+    </a>
+    
+    <!-- Search Bar -->
+    <div class="search-input">
+      <form id="search" action="#">
+        <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
+        <i class="fa fa-search"></i>
+      </form>
+    </div>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+      <a href="./linear_search.html">Linear Search</a>
+      <a href="./binary_search.html">Binary Search</a>
+      <a href="./jump_search.html">Jump search</a>
+      <a href="./bfs_search.html">Breadth First Search</a>
+      <a href="./bst.html">Binary Search Tree</a>
+      <a href="./dfs.html">Depth First Search</a>
+    </div>
+    <!-- Navigation Links -->
+    <ul class="nav">
+      <li><a href="../index.html" class="active">Home</a></li>
+      <li><a href="../code.html">Code Editor</a></li>
+      <li><a href="../sign-in.html">Sign-In</a></li>
+      <li><a href="../sign-up.html">Sign-Up</a></li>
+    </ul>
+  </div>
+</header>
+<!-- Main Content -->
+<h1>Jump Search Visualization</h1>
+  <div id="controls">
+    <input type="number" id="array-size" placeholder="Array size (e.g., 10)">
+    <button id="generate-array">Generate Sorted Array</button>
+    <br><br>
+    <input type="text" id="user-array" placeholder="Enter sorted array (comma-separated)">
+    <button id="use-custom-array">Use Custom Array</button>
+    <br><br>
+    <input type="number" id="search-key" placeholder="Enter search key">
+    <button id="start-search">Start Search</button>
+    <button id="clear-array">Clear Array</button>
+  </div>
+  <div id="visualization"></div>
+  <div id="status"></div>
+
+  <!-- Speed Control -->
+  <div class="speed-control">
+	<label for="speedControl">Speed: </label>
+	<input type="range" id="speedControl" min="500" max="5000" step="500" value="2500">
+	<span id="speedLabel">2.5s</span>
+  </div>
+
+
+<!-- Footer -->
+<div class="footer">
+  <p>Made with <i class="fas fa-heart"></i> by HackBreakers!</p>
+</div>
+
+  <script>
+
+  const speedControl = document.getElementById('speedControl');
+const speedLabel = document.getElementById('speedLabel');
+
+// Initialize delay duration
+let delayDuration = parseInt(speedControl.value, 10);
+
+// Update delay duration and label when slider changes
+speedControl.addEventListener('input', () => {
+  delayDuration = parseInt(speedControl.value, 10);
+  speedLabel.textContent = `${(delayDuration / 1000).toFixed(1)}s`; // Display delay in seconds
+});
+
+ const generateArrayBtn = document.getElementById('generate-array');
+const useCustomArrayBtn = document.getElementById('use-custom-array');
+const clearArrayBtn = document.getElementById('clear-array');
+const startSearchBtn = document.getElementById('start-search');
+const visualization = document.getElementById('visualization');
+const statusDiv = document.getElementById('status');
+
+let array = [];
+
+// Function to generate a sorted array of a given size
+function generateArray(size) {
+  array = Array.from({ length: size }, () => Math.floor(Math.random() * 100));
+  array.sort((a, b) => a - b); // Ensure array is sorted
+  renderArray();
+}
+
+// Function to render the array visualization
+function renderArray() {
+  visualization.innerHTML = '';
+  array.forEach((value, index) => {
+    const block = document.createElement('div');
+    block.className = 'block';
+    block.textContent = value;
+    block.dataset.index = index;
+    visualization.appendChild(block);
+  });
+}
+
+// Function to clear the array and reset inputs
+function clearArray() {
+  array = [];
+  visualization.innerHTML = '';
+  statusDiv.textContent = '';
+  document.getElementById('user-array').value = '';
+  document.getElementById('array-size').value = '';
+  document.getElementById('search-key').value = '';
+}
+
+// Function to validate and use a custom array
+function useCustomArray() {
+  const userArray = document.getElementById('user-array').value
+    .split(',')
+    .map(Number)
+    .filter(val => !isNaN(val));
+
+  if (userArray.length < 2) {
+    statusDiv.textContent = 'Please provide at least two numbers.';
+    return;
+  }
+
+  const isSorted = userArray.every((val, i, arr) => i === 0 || arr[i - 1] <= val);
+  if (!isSorted) {
+    statusDiv.textContent = 'Please provide a sorted array.';
+    return;
+  }
+
+  array = userArray;
+  renderArray();
+}
+
+// Function to perform jump search visualization
+async function jumpSearch(key) {
+	const n = array.length;
+	const step = Math.floor(Math.sqrt(n)); // Calculate jump size
+	let low = 0;
+	let high = step;
+  
+	// Function to highlight specific blocks
+	function highlight(index) {
+	  const blocks = document.querySelectorAll('.block');
+	  blocks.forEach(block => block.classList.remove('low', 'high', 'current', 'checked'));
+	  if (index.low !== -1) blocks[index.low].classList.add('low'); // Highlight low
+	  if (index.high !== -1) blocks[index.high].classList.add('high'); // Highlight high
+	}
+  
+	// Function to pause for visualization with dynamic speed
+	function delay(ms = delayDuration) {
+	  return new Promise(resolve => setTimeout(resolve, ms));
+	}
+  
+	statusDiv.textContent = 'Starting jump search...';
+  
+	// Jump phase
+	while (high < n && array[high] < key) {
+	  highlight({ low, high }); // Highlight low and high
+	  statusDiv.textContent = `Jumping: ${array[low]} (low) and ${array[high]} (high)`;
+	  await delay();
+  
+	  low = high; // Update low
+	  high += step; // Update high
+	  if (high >= n) high = n - 1; // Prevent high from exceeding array bounds
+	}
+  
+	// Check if key is at "high"
+	if (high < n && array[high] === key) {
+		highlight({ low: -1, high }); // Highlight the found index
+		statusDiv.textContent = `Key found at index ${high}`;
+		return; // Exit if key is found
+	  }
+	  
+  
+	// If key is less than the current high value, start linear search from low
+	if (high >= n || array[high] > key) {
+		statusDiv.textContent = `${key} is less than ${array[high]}, starting linear search from ${array[low]}`;
+	  }
+	  
+  
+	// Linear search phase
+	for (let i = low; i < n && i <= high; i++) {
+	  highlight({ low: i, high: -1 }); // Highlight current index during linear search
+	  statusDiv.textContent = `Checking index ${i}: ${array[i]} == ${key}?`;
+	  await delay();
+  
+	  if (array[i] === key) {
+		statusDiv.textContent = `Key found at index ${i}`;
+		highlight({ low: i, high: -1 }); // Highlight found index
+		return;
+	  }
+	}
+  
+	statusDiv.textContent = 'Key not found.';
+  }
+  
+
+// Event listeners
+generateArrayBtn.addEventListener('click', () => {
+  const size = parseInt(document.getElementById('array-size').value, 10);
+  if (size < 2) {
+    statusDiv.textContent = 'Array size must be at least 2.';
+    return;
+  }
+  generateArray(size);
+});
+
+useCustomArrayBtn.addEventListener('click', useCustomArray);
+
+clearArrayBtn.addEventListener('click', clearArray);
+
+startSearchBtn.addEventListener('click', () => {
+  const key = parseInt(document.getElementById('search-key').value, 10);
+  if (!isNaN(key) && array.length > 0) {
+    statusDiv.textContent = 'Searching...';
+    jumpSearch(key);
+  } else {
+    statusDiv.textContent = 'Invalid input or empty array.';
+  }
+});
+
+  
+  </script>
+</body>
+</html>

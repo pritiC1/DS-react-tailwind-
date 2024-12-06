@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="./assets/images/chatbot.jpeg" type="image/icon type">
+  <title>DSAPathshala</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="../assets/css/fontawesome.css">
+  <link rel="stylesheet" href="../assets/css/templatemo-scholar.css">
+  <link rel="stylesheet" href="../assets/css/owl.css">
+  <link rel="stylesheet" href="../assets/css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+  <style>
+            .sidenav {
+          height: 100%;
+          width: 200px;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+        
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a, .dropdown-btn {
+          padding: 6px 8px 6px 16px;
+          text-decoration: none;
+          font-size: 20px;
+          color: #818181;
+          display: block;
+          border: none;
+          background: none;
+          width: 100%;
+          text-align: left;
+          cursor: pointer;
+          outline: none;
+        }
+        
+        /* On mouse-over */
+        .sidenav a:hover, .dropdown-btn:hover {
+          color: #f1f1f1;
+        }
+        
+        /* Main content */
+        .main {
+          margin-left: 200px; /* Same as the width of the sidenav */
+          font-size: 20px; /* Increased text to enable scrolling */
+          padding: 0px 10px;
+        }
+
+        .styling{
+          color: white;
+          font-weight: 400;
+          margin-top: 1%;
+          margin-left: 1%;
+        }
+
+        .btn{
+          margin-bottom: 5%;
+          background-color: #111;
+          color: white;
+          border: none;
+          width: 7%;
+          align-items: center;
+          padding: 1%;
+          border-radius: 10%;
+          font-size: 20px;
+        }
+        .btn:hover{
+          cursor: pointer;
+          background-color: #6a5acd;
+          transition: all ease-in-out 0.5s;
+        }
+        .title{
+          margin-top: 2%;
+          color: rgb(97, 97, 97);
+          font-size: 70px;
+        }
+        .subtitle{
+          margin-top: 3%;
+          color: #23c186;
+        }
+        .algopic{
+          width: 70%;
+          height: 70%;
+          border-radius: 5%;
+          margin-top: 1%;
+        }
+        
+        /* Add an active class to the active dropdown button */
+        .active {
+          background-color: #9186d4;
+          color: white;
+        }
+        
+        .dropdown-container {
+          display: none;
+          background-color: #262626;
+          padding-left: 8px;
+        }
+
+        /*Task Tracker Css*/
+        .task-container {
+            margin-left: 20%;
+            color: white;
+        }
+
+        .progress-bar {
+            width: 70%;
+            background-color: #f3f3f3;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 20px 0;
+            height: 25px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0;
+            background-color: #6a5acd;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        .percentage {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .checkbox-label {
+            margin: 10px 0;
+            display: block;
+            font-size: 18px;
+        }
+
+    </style>
+  </style>
+</head>
+<body style="background-color: #262626;">
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky" style="background-color: #7B6AD8; padding: 2%; top: 0%; position: fixed;">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <div href="index.html" class="logo" style=" margin-right: 7%;">
+                <img src="../assets/images/title1.png" style="width: 130%;"/>
+              </div>
+              <!-- ***** Logo End ***** -->
+              <ul class="nav" style="display: flex;">
+                <li class="scroll-to-section"><a href="../index.html" style="font-size: 16px;">Home</a></li>
+                <li class="scroll-to-section"><a href="../code.html" style="font-size: 16px;">Code Editor</a></li>
+                <li class="scroll-to-section"><a href="../sign-up.html" class="active" style="font-size: 16px;">Practicals</a></li>
+              </ul>
+              <a class="menu-trigger">
+                <span style="font-size: 16px;">Menu</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+  </header>
+
+  <!-- Vertical Bar-->
+  <div class="sidenav" style="padding-top: 8%;">
+    <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 1 
+      <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">Theory</a>
+      <a href="../searching/linear_search.html">Visualization</a>
+      <a href="../code.html">CodeEditor</a>
+      <a href="#">MCQ Test</a>
+    </div>
+    <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 2 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 3
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 4 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 5 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Practical</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 6 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 7 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 8 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 9 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 10 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 11 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 12 
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">CodeEditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+      <button class="dropdown-btn" style="padding-bottom: 5%;">Practical 13
+        <i class="fa fa-caret-down" style="margin-left: 10%;"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Theory</a>
+        <a href="#">Visualization</a>
+        <a href="#">Code ditor</a>
+        <a href="#">MCQ Test</a>
+      </div>
+  </div>
+  <!-- Vertical Bar End-->
+
+    <!--Practical Part Begin-->
+
+    <div class="main" style="margin-top: 10%; margin-left: 25%; justify-content: center; display: flex; flex-direction: column; width: 60%;">
+        <!--practical head-->
+          <h1 style="color: white;">Practical 1</h1>
+          <h3 class="styling"> Aim: Implementation of Linear Search and Binary Search Technique </h3>
+          <h1 class="title">Theory</h1>
+
+        <!--practical body-->
+          <h3 class="styling subtitle">What is search?</h3>
+          <h4 class="styling">Search is a process of finding a value in a list of values. In other words, searching is the
+            process of locating given value position in a list of values.</h4>
+
+          <h3 class="styling subtitle">Linear Search Algorithm (Sequential Search Algorithm)</h3>
+          <h4 class="styling">Linear search algorithm finds a given element in a list of elements with O(n) time
+            complexity where n is total number of elements in the list. This search process starts
+            comparing search element with the first element in the list. If both are matched then
+            result is element found otherwise search element is compared with the next element in
+            the list. Repeat the same until search element is compared with the last element in the
+            list, if that last element also doesn't match, then the result is "Element not found in the
+            list". That means, the search element is compared with element by element in the list.</h4>
+          <h4 class="styling">Linear search is implemented using following steps...</h4>
+          <ol class="styling" type="1">
+            <li>Read the search element from the use</li>
+            <li>Compare the search element with the first element in the list</li>
+            <li>If both are matched, then display "Given element is found!!!" and
+              terminate the function</li>
+            <li>If both are not matched, then compare search element with the next
+              element in the list</li>
+            <li>Repeat steps 3 and 4 until search element is compared with last element
+              in the list</li>
+            <li>If last element in the list also doesn't match, then display "Element is
+              not found!!!" and terminate the function</li>
+          </ol>
+
+          <h3 class="styling subtitle">Binary Search</h3>
+          <h4 class="styling">Before searching, the list of items should be sorted in ascending order. First
+            comparethe key value with the item in the mid position of the array.
+            If there is a match, we can return immediately the position. if the value is less than
+            theelement in middle location of the array, the required value is lie in the lower half of the
+            array</h4>
+          <h4 class="styling">If the value is greater than the element in middle location of the array, the
+            required value is lie in the upper half of the array. We repeat the above procedure
+            on the lower half orupper half of the array</h4>
+          <h4 class="styling">Algorithm: </h4>
+          <div style="justify-content: center; align-items: center; display: flex; margin-bottom: 2%;">
+            <img src="../assets/images/AlgoPicutres/practical1.png" alt="binary_search_algorithm" class="algopic">
+          </div>
+          <a href="../searching/linear_search.html" style="display: flex; align-items: end; justify-content: end;">
+              <button class="styling btn">NEXT</button>
+          </a>
+    </div>
+    <!--Practidcla Part End-->
+
+    <!--Tracker Begin
+    <div class="task-container">
+      <label class="checkbox-label">
+          <input type="checkbox" class="task-checkbox" value="25"> <span style="color: #23c186;">Practical</span>
+      </label>
+      <label class="checkbox-label">
+          <input type="checkbox" class="task-checkbox" value="25"> <span style="color: #e91e63;">Visualization</span> 
+      </label>
+      <label class="checkbox-label">
+          <input type="checkbox" class="task-checkbox" value="25"> <span style="color: #2196f3;">Code Editor</span>  
+      </label>
+      <label class="checkbox-label">
+          <input type="checkbox" class="task-checkbox" value="25"> <span style="color: #eee566;">MCQ</span> 
+      </label>
+  </div>
+
+  <div class="progress-bar" style="margin-left: 15%;">
+      <div class="progress-bar-fill"></div>
+  </div>
+  <div class="percentage">0%</div>
+    Tracker End-->
+
+    <script>
+      //script for drop down content
+      var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+              
+        for (i = 0; i < dropdown.length; i++) {
+          dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+              dropdownContent.style.display = "none";
+            } else {
+              dropdownContent.style.display = "block";
+            }
+          });
+        }
+
+        //script for tracker
+        document.addEventListener("DOMContentLoaded", () => {
+            const checkboxes = document.querySelectorAll(".task-checkbox");
+            const progressBarFill = document.querySelector(".progress-bar-fill");
+            const percentageDisplay = document.querySelector(".percentage");
+
+            // Load the saved state of checkboxes and progress from localStorage
+            function loadState() {
+                let progress = 0;
+                checkboxes.forEach((checkbox) => {
+                    const task = checkbox.getAttribute("data-task");
+                    const isChecked = localStorage.getItem(task) === "true";
+                    checkbox.checked = isChecked;
+                    if (isChecked) {
+                        progress += parseInt(checkbox.value);
+                    }
+                });
+                updateProgress(progress);
+            }
+
+            // Save the state of checkboxes to localStorage
+            function saveState() {
+                checkboxes.forEach((checkbox) => {
+                    const task = checkbox.getAttribute("data-task");
+                    localStorage.setItem(task, checkbox.checked);
+                });
+            }
+
+            // Update the progress bar and percentage
+            function updateProgress(progress) {
+                progressBarFill.style.width = `${progress}%`;
+                percentageDisplay.textContent = `${progress}%`;
+            }
+
+            // Calculate progress based on checked checkboxes
+            function calculateProgress() {
+                let progress = 0;
+                checkboxes.forEach((checkbox) => {
+                    if (checkbox.checked) {
+                        progress += parseInt(checkbox.value);
+                    }
+                });
+                return progress;
+            }
+
+            // Add event listeners to checkboxes
+            checkboxes.forEach((checkbox) => {
+                checkbox.addEventListener("change", () => {
+                    saveState();
+                    updateProgress(calculateProgress());
+                });
+            });
+
+            // Initialize the tracker with the saved state
+            loadState();
+        });
+    </script>
+
+</body>
+</html>    
+  

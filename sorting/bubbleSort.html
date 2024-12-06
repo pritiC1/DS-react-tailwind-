@@ -1,0 +1,438 @@
+    <!DOCTYPE html>
+     <html lang="en">
+     
+       <head>
+     
+         <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+         <link href="../https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+         <link rel="icon" href="./assets/images/chatbot.jpeg" type="image/icon type">
+         <title>DSAPathshala</title>
+     
+         <!-- Bootstrap core CSS -->
+         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     
+     
+         <!-- Additional CSS Files -->
+         <link rel="stylesheet" href="../assets/css/fontawesome.css">
+         <link rel="stylesheet" href="../assets/css/templatemo-scholar.css">
+         <link rel="stylesheet" href="../assets/css/owl.css">
+         <link rel="stylesheet" href="../assets/css/animate.css">
+         <link rel="stylesheet"href="../https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+     <!--
+     
+     TemplateMo 586 Scholar
+     
+     https://templatemo.com/tm-586-scholar
+     
+     -->     
+     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+        }
+        h1 {
+            
+            color: #6704a4;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .header-area {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #6A5ACD; /* Soft purple shade */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-area .logo h1 {
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 15px;
+            display: inline-block;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .search-input input {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+            color: #333;
+            background-color: white;
+            transition: 0.3s ease;
+        }
+
+        .search-input input:focus {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+        .search-input i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+       
+       
+            transform: translateY(-50%);
+            color: #999;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px auto;
+        }
+        .button-container button {
+            background-color: #7B6AD8;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .button-container button:hover {
+            background-color: #5b029a;
+        }
+        .sidebar {
+            margin-top: 100px;
+            position:fixed;
+            top: 0;
+            left: 0;
+            width: 12%;
+            height: 100%;
+            background-color: #584b9e;
+            color: white;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #7B6AD8;
+        }
+        .timeline-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .array-container {
+            margin: 30px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .element {
+            width: 60px;
+            height: 60px;
+            background-color: skyblue;
+            text-align: center;
+            font-weight: bold;
+            line-height: 60px;
+            font-size: 18px;
+            position: relative;
+            border: 2px solid #333;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .element.active {
+            background-color: orange;
+            transform: scale(1.2);
+        }
+        .element.sorted {
+            background-color: lightgreen;
+        }
+        .index {
+            position: absolute;
+            top: 50px;
+            /*bottom: -20px;*/
+            font-size: 14px;
+            color: #555;
+        }
+       /* .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid #007bff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+        .popup h2 {
+            margin-bottom: 10px;
+            color: #007bff;
+        }*/
+        .footer {
+            margin-top: auto;
+            background-color: #7B6AD8;
+            color: white;
+            text-align: center;
+            padding: 8px;
+        }
+
+        #message {
+            margin-left: 50%;
+            margin-top: 50px;
+            font-size: 18px;
+            color: green;
+        }
+
+
+    @media (max-width: 768px) {
+        .main-nav {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+
+        .search-input {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .search-input input {
+            width: calc(100% - 20px);
+        }
+    }
+
+    </style>
+</head>
+<body>
+
+
+    <!-- Header Section -->
+    <header class="header-area">
+        <div class="main-nav">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <h1>DSAPathshala</h1>
+            </a>
+            
+            <!-- Search Bar -->
+            <div class="search-input">
+                <form id="search" action="#">
+                    <input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
+                    <i class="fa fa-search"></i>
+                </form>
+            </div>
+            
+            <!-- Navigation Links -->
+            <ul class="nav">
+                <li><a href="../index.html" class="active">Home</a></li>
+                <li><a href="../code.html">Code Editor</a></li>
+                <li><a href="../sign-in.html">Sign-In</a></li>
+                <li><a href="../sign-up.html">Sign-Up</a></li>
+            </ul>
+        </div>
+    </header>
+    <div style="font-family:'Courier New', Courier, monospace">
+    <h1>Bubble Sort Visualizer</h1>
+    </div>
+
+    <!-- Button Container -->
+    <div class="button-container">
+        <input type="text" id="numberInput" placeholder="Enter numbers (comma-separated)">
+        <button onclick="addNumbers()">Add Numbers</button>
+        <button onclick="deleteNumber()">Delete Last</button>
+        <button onclick="resetArray()">Reset</button>
+        <button onclick="nextStep()">Next Step</button>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+      <a href="./bubbleSort.html">Bubble Sort</a>
+      <a href="./insertionsort.html">Insertion Sort</a>
+      <a href="./quick_sort.html">Quick Sort</a>
+      <a href="./merge_sort.html">Merge Sort</a>
+      
+    </div>
+    
+
+    <!-- Timeline for speed control -->
+    <div class="timeline-container">
+        <label for="speed">Speed: <span id="speedValue">500ms</span></label>
+        <input type="range" id="speed" min="100" max="2000" value="500" step="100" oninput="updateSpeed(this.value)">
+    </div>
+
+    <!-- Array container -->
+    <div id="arrayContainer" class="array-container"></div>
+
+    <!-- Sorting Complete Message -->
+    <div id="message"></div>
+
+    <!-- Footer -->
+    <div class="footer">
+    <p>Made with <i class="fas fa-heart"></i> by HackBreakers!</p>
+    </div>
+
+    <script>
+    let numbers = [];
+    let i = 0, j = 0;
+    let speed = 500;
+    let isSorting = false;
+
+    // Render array elements
+    function renderArray() {
+        const container = document.getElementById("arrayContainer");
+        container.innerHTML = "";
+        numbers.forEach((num, index) => {
+            const element = document.createElement("div");
+            element.className = "element";
+            element.textContent = num;
+
+            const indexLabel = document.createElement("div");
+            indexLabel.className = "index";
+            indexLabel.textContent = index;
+            element.appendChild(indexLabel);
+
+            if (index === j) element.classList.add("active");
+            if (index === j + 1) element.classList.add("active");
+            if (index >= numbers.length - i) element.classList.add("sorted");
+
+            container.appendChild(element);
+        });
+    }
+
+    // Add numbers
+    function addNumbers() {
+        const input = document.getElementById("numberInput");
+        const values = input.value.split(",").map(num => parseInt(num.trim())).filter(num => !isNaN(num));
+        if (values.length > 0) {
+            numbers.push(...values);
+            input.value = "";
+            renderArray();
+            resetSorting();
+        }
+    }
+
+    // Trigger animation with Enter key
+    document.getElementById("numberInput").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            addNumbers(); // Add the numbers first
+            autoSort();   // Then start the animation
+        }
+    });
+
+    // Delete last number
+    function deleteNumber() {
+        numbers.pop();
+        renderArray();
+        resetSorting();
+    }
+
+    // Delay function
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // Reset sorting state
+    function resetSorting() {
+        i = 0;
+        j = 0;
+        isSorting = false;
+        showMessage(""); // Clear the message
+    }
+
+    // Reset array
+    function resetArray() {
+        numbers = [];
+        renderArray();
+        resetSorting();
+    }
+
+    // Show a message
+    function showMessage(text) {
+        const messageElement = document.getElementById("message");
+        messageElement.textContent = text; // Update the message text
+    }
+
+    // Bubble Sort with full checks and animations
+    async function autoSort() {
+        while (i < numbers.length - 1) {
+            let swapped = false;
+            for (j = 0; j < numbers.length - i - 1; j++) {
+                if (numbers[j] > numbers[j + 1]) {
+                    [numbers[j], numbers[j + 1]] = [numbers[j + 1], numbers[j]];
+                    swapped = true;
+                    await delay(speed);
+                    renderArray();
+                }
+            }
+            i++;
+            renderArray(); // Refresh array state after each pass
+            if (!swapped) break; // If no swaps, array is already sorted
+        }
+        showMessage("Sorting Complete!");
+    }
+
+    // Next step functionality
+    function nextStep() {
+        if (i < numbers.length - 1 && j < numbers.length - i - 1) {
+            if (numbers[j] > numbers[j + 1]) {
+                [numbers[j], numbers[j + 1]] = [numbers[j + 1], numbers[j]];
+            }
+            j++;
+            if (j >= numbers.length - i - 1) {
+                i++;
+                j = 0;
+            }
+            renderArray();
+        } else {
+            showMessage("Sorting Complete!");
+        }
+    }
+
+    // Update speed
+    function updateSpeed(value) {
+        speed = value;
+        document.getElementById("speedValue").textContent = `${value}ms`;
+    }
+    </script>
+</body>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/js/isotope.min.js"></script>
+  <script src="../assets/js/owl-carousel.js"></script>
+  <script src="../assets/js/counter.js"></script>
+  <script src="../assets/js/custom.js"></script>
+</html>
+

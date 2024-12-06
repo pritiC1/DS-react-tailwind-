@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="../https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" rel="stylesheet" />
+  <link rel="icon" href="./assets/images/chatbot.jpeg" type="image/icon type">
+	<title>DSAPathshala</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="../assets/css/fontawesome.css">
+	<link rel="stylesheet" href="../assets/css/templatemo-scholar.css">
+	<link rel="stylesheet" href="../assets/css/owl.css">
+	<link rel="stylesheet" href="../assets/css/animate.css">
+	<link rel="stylesheet"href="../https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 586 Scholar
+
+https://templatemo.com/tm-586-scholar
+
+-->
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+	
+}
+
+h1 {
+  color: #6704a4;
+  text-align: center;
+  margin: 20px 0;
+
+}
+p {
+	margin-top:-13px;
+	margin-left:250px;
+}
+h2 {
+	color: #6704a4 ;
+	text-align: center;
+	margin-top: -10px ;
+  
+  }
+/* Header Area */
+.header-area {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #6A5ACD; /* Soft purple shade */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	
+}
+
+.header-area .logo h1 {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 15px;
+    display: inline-block;
+}
+
+/* Main Navigation */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+	
+}
+
+.search-input input {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+    transition: 0.3s ease;
+}
+
+.search-input input:focus {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-input i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+/* Sidebar */
+.sidebar {
+    margin-top: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12%;
+    height: 100%;
+    background-color: #584b9e;
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #7B6AD8;
+}
+
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    background-color: #7B6AD8;
+    color: white;
+    text-align: center;
+    padding: 8px;
+}
+    #network {
+      width: 100%;
+      max-width: 800px;
+      height: 280px;
+      margin: 20px auto;
+      border: 1px solid lightgray;
+      border-radius: 8px;
+    }
+    #details {
+      margin: 5px auto;
+      width: 70%;
+      max-width: 800px;
+      background: #ffffff;
+      padding: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+  
+/* Button Styles */
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7B6AD8;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #5b029a;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: -5px;
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
+	</style>
+	</head>
+	<body>
+	
+	
+	<!-- Header Section -->
+	<header class="header-area">
+	  <div class="main-nav">
+		<!-- Logo -->
+		<a href="index.html" class="logo">
+		  <h1>DSAPathshala</h1>
+		</a>
+		
+		<!-- Search Bar -->
+		<div class="search-input">
+		  <form id="search" action="#">
+			<input type="text" placeholder="Type Something" id="searchText" name="searchKeyword">
+			<i class="fa fa-search"></i>
+		  </form>
+		</div>
+		
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <a href="./stack.html">Stack</a>
+        <a href="./queue.html">Queue</a>
+        <a href="./sll.html">Singly LinkedList</a>
+        <a href="./circular dll.html">Circular DLL</a>
+        <a href="./circular sll.html">Circular SLL</a>
+        <a href="./circularqueue.html">Circular Queue</a>
+        <a href="./unweightedgraph.html">Unweighted Graph</a>
+        <a href="./weightedgraph.html">Weighted Graph</a>
+        <a href="./undirected_graph.html">Undirected Graph</a>
+        <a href="./directed_graph.html">Directed Graph</a>
+    </div>
+    
+		
+		<!-- Navigation Links -->
+		<ul class="nav">
+		  <li><a href="../index.html" class="active">Home</a></li>
+		  <li><a href="../code.html">Code Editor</a></li>
+		  <li><a href="../sign-in.html">Sign-In</a></li>
+		  <li><a href="../sign-up.html">Sign-Up</a></li>
+		</ul>
+	  </div>
+	</header>
+
+  <h1>Directed Graph Visualization</h1>
+  <p>A directed graph (or digraph) consists of vertices connected by directed edges. An edge from vertex A to vertex B is represented as (A → B), indicating the direction of the relationship.</p>
+  
+  <div id="network"></div>
+  <h2>Graph Details</h2>
+  <div id="details">
+    
+    <p id="vertices"><strong>Vertices:</strong> Loading...</p>
+    <p id="edges"><strong>Edges:</strong> Loading...</p>
+  </div>
+<div class="button-container">
+  <button onclick="generateNewGraph()">Generate New Graph</button>
+  </div>
+  <!-- Footer -->
+    <div class="footer">
+      <p>Made with <i class="fas fa-heart"></i> by HackBreakers!</p>
+    </div>
+  <script>
+    // Function to generate random graph data
+    function generateRandomGraph(nodeCount, edgeCount) {
+      const nodes = [];
+      const edges = [];
+
+      // Generate nodes
+      for (let i = 0; i < nodeCount; i++) {
+        nodes.push({ id: i, label: `Node ${i}` });
+      }
+
+      // Generate random edges
+      while (edges.length < edgeCount) {
+        const from = Math.floor(Math.random() * nodeCount);
+        const to = Math.floor(Math.random() * nodeCount);
+
+        // Avoid self-loops and duplicate edges
+        if (from !== to && !edges.some(edge => edge.from === from && edge.to === to)) {
+          edges.push({ from, to, arrows: "to" }); // Directed edge
+        }
+      }
+
+      return { nodes, edges };
+    }
+
+    // Display graph details
+    function displayDetails(graphData) {
+      const vertices = graphData.nodes.map(node => node.label).join(", ");
+      const edges = graphData.edges.map(edge => `(${edge.from} → ${edge.to})`).join(", ");
+
+      document.getElementById("vertices").innerHTML = `<strong>Vertices:</strong> { ${vertices} }`;
+      document.getElementById("edges").innerHTML = `<strong>Edges:</strong> [ ${edges} ]`;
+    }
+
+    // Create a network
+    const container = document.getElementById("network");
+    let network;
+
+    function generateNewGraph() {
+      const graphData = generateRandomGraph(6, 8); // Adjust node and edge count
+      const data = {
+        nodes: new vis.DataSet(graphData.nodes),
+        edges: new vis.DataSet(graphData.edges),
+      };
+
+      const options = {
+        edges: {
+          arrows: "to",
+          color: "#ccc",
+        },
+        nodes: {
+          shape: "circle",
+          color: {
+            background: "#61bffc",
+            border: "#007bff",
+          },
+          font: { color: "#000" },
+        },
+        physics: {
+          enabled: true,
+        },
+        interaction: {
+          zoomView: false, // Disable zoom
+          dragView: true, // Allow dragging
+        },
+      };
+
+      // Initialize or recreate the network
+      network = new vis.Network(container, data, options);
+
+      // Display the graph details
+      displayDetails(graphData);
+    }
+
+    // Generate the initial graph
+    generateNewGraph();
+  </script>
+</body>
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/js/isotope.min.js"></script>
+<script src="../assets/js/owl-carousel.js"></script>
+<script src="../assets/js/counter.js"></script>
+<script src="../assets/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+</html>
