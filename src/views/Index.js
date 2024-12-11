@@ -1,13 +1,36 @@
 /*eslint-disable*/
 import React from "react";
+import ReactDOM from "react-dom/client";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import new1 from "../assets/img/visualization ss.jpg"
-import new2 from "../assets/img/visualization ss.jpg"
-import new3 from "../assets/img/visualization ss.jpg"
+import new1 from "../assets/img/visualization ss.jpg";
+import reactImage from '../assets/img/react.jpg'; 
+import vueImage from '../assets/img/vue.jpg';
+import angularImage from '../assets/img/angular.jpg';
+import new2 from "../assets/img/visualization ss.jpg";
+import new3 from "../assets/img/visualization ss.jpg";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import bootstrapImage from '../assets/img/bootstrap.jpg';
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
 
 export default function Index() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true, // Enables automatic sliding
+    autoplaySpeed: 3000, // 3 seconds per slide
+    centerMode: true,
+    centerPadding: "20px",
+  };
   return (
     <>
       <IndexNavbar fixed />
@@ -560,6 +583,85 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* Card Slider Section */}
+      <section className="py-20 bg-blueGray-200">
+  <div className="container mx-auto">
+    <h3 className="text-3xl font-semibold text-center mb-8 font-roboto">
+      Features Slider
+    </h3>
+    <Slider {...settings}>
+      {/* Card 1 - React */}
+      <div className="px-4">
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center flex flex-col items-center">
+          <div className="relative bg-red-400 w-32 h-32 mb-4 mt-[-3rem] rounded-full overflow-hidden">
+            <img
+              src={reactImage}
+              alt="React Logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <h3 className="text-xl font-semibold font-roboto">React</h3>
+          <p className="text-gray-500 mt-2 font-roboto">
+            Build interactive UIs with React.
+          </p>
+        </div>
+      </div>
+
+      {/* Card 2 - Vue */}
+      <div className="px-4">
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center flex flex-col items-center">
+          <div className="relative bg-lightBlue-400 w-32 h-32 mb-4 mt-[-3rem] rounded-full overflow-hidden">
+            <img
+              src={vueImage}
+              alt="Vue Logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <h3 className="text-xl font-semibold font-roboto">Vue</h3>
+          <p className="text-gray-500 mt-2 font-roboto">
+            Lightweight and progressive framework for building UIs.
+          </p>
+        </div>
+      </div>
+
+      <div className="px-4">
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center flex flex-col items-center">
+          <div className="relative bg-purple-400 w-32 h-32 mb-4 mt-[-2rem] rounded-full overflow-hidden">
+            <img
+            src={angularImage}
+            alt="Angular Logo"
+            className="w-full h-full object-cover"
+          />
+          </div>
+          <h3 className="text-xl font-semibold font-roboto">Angular</h3>
+          <p className="text-gray-500 mt-2 font-roboto">
+            A modern, fast framework that compiles away at build time.
+          </p>
+        </div>
+      </div>
+
+      {/* Card 4 - Svelte */}
+      <div className="px-4">
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center flex flex-col items-center">
+          <div className="relative bg-purple-400 w-32 h-32 mb-4 mt-[-3rem] rounded-full overflow-hidden">
+            <img
+              src={bootstrapImage}
+              alt="Bootstrap Logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <h3 className="text-xl font-semibold font-roboto">Bootstrap</h3>
+          <p className="text-gray-500 mt-2 font-roboto">
+            A modern, fast framework that compiles away at build time.
+          </p>
+        </div>
+      </div>
+
+      
+    </Slider>
+  </div>
+</section>
 
       <section className="py-20 bg-blueGray-600 overflow-hidden">
         <div className="container mx-auto pb-64">
