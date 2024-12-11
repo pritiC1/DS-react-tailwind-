@@ -1,7 +1,9 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
-
+import new1 from "../assets/img/visualization ss.jpg"
+import new2 from "../assets/img/visualization ss.jpg"
+import new3 from "../assets/img/visualization ss.jpg"
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
@@ -494,11 +496,9 @@ export default function Index() {
 
         <div className="justify-center text-center flex flex-wrap mt-24">
           <div className="w-full md:w-6/12 px-12 md:px-4">
-            <h2 className="font-semibold text-4xl">Beautiful Example Pages</h2>
+            <h2 className="font-semibold text-4xl">Explore Our Gallery</h2>
             <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-500">
-              Notus React is a completly new product built using our past
-              experience in web templates. Take the examples we made for you and
-              start playing with them.
+            "Unlock the beauty of data structures, one glimpse at a time."
             </p>
           </div>
         </div>
@@ -511,14 +511,14 @@ export default function Index() {
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-4/12 px-4">
                   <h5 className="text-xl font-semibold pb-4 text-center">
-                    Login Page
+                    Searching
                   </h5>
                   <Link to="/auth/login">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
                       <img
                         alt="..."
                         className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src={require("assets/img/login.jpg").default}
+                        src={new1}
                       />
                     </div>
                   </Link>
@@ -526,14 +526,15 @@ export default function Index() {
 
                 <div className="w-full lg:w-4/12 px-4">
                   <h5 className="text-xl font-semibold pb-4 text-center">
-                    Profile Page
+                    Sorting
                   </h5>
                   <Link to="/profile">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
                       <img
                         alt="..."
                         className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src={require("assets/img/profile.jpg").default}
+                        src={new2}
+
                       />
                     </div>
                   </Link>
@@ -541,14 +542,15 @@ export default function Index() {
 
                 <div className="w-full lg:w-4/12 px-4">
                   <h5 className="text-xl font-semibold pb-4 text-center">
-                    Landing Page
+                    Dynamic Programming
                   </h5>
                   <Link to="/landing">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
                       <img
                         alt="..."
                         className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src={require("assets/img/landing.jpg").default}
+                        src={new3}
+
                       />
                     </div>
                   </Link>
@@ -566,10 +568,10 @@ export default function Index() {
               <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                 <i className="fas fa-code-branch text-xl"></i>
               </div>
-              <h3 className="text-3xl mb-2 font-semibold leading-normal text-white">
+              {/* <h3 className="text-3xl mb-2 font-semibold leading-normal text-white">
                 Open Source
-              </h3>
-              <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-400">
+              </h3> */}
+              {/* <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-400">
                 Since{" "}
                 <a
                   href="https://tailwindcss.com/?ref=creativetim"
@@ -581,86 +583,97 @@ export default function Index() {
                 is an open source project we wanted to continue this movement
                 too. You can give this version a try to feel the design and also
                 test the quality of the code!
-              </p>
-              <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-400">
+              </p> */}
+              {/* <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-400">
                 Get it free on Github and please help us spread the news with a
                 Star!
-              </p>
-              <a
+              </p> */}
+              {/* <a
                 href="https://github.com/creativetimofficial/notus-react?ref=nr-index"
                 target="_blank"
                 className="github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
               >
                 Github Star
-              </a>
+              </a> */}
             </div>
+            
 
-            <div className="w-full md:w-4/12 px-4 mr-auto ml-auto mt-32 relative">
-              <i className="fab fa-github text-blueGray-700 absolute -top-150-px -right-100 left-auto opacity-80 text-55"></i>
-            </div>
-          </div>
-        </div>
-      </section>
+            {/*connection code*/}
+            <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
+              <div className="w-full lg:w-6/12 px-4">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
+                  <div className="flex-auto p-5 lg:p-10">
+                    <h4 className="text-2xl font-semibold">
+                      Want to work with us?
+                    </h4>
+                    <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">
+                      Complete this form and we will get back to you in 24
+                      hours.
+                    </p>
+                    <div className="relative w-full mb-3 mt-8">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="full-name"
+                      >
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Full Name"
+                      />
+                    </div>
 
-      <section className="pb-16 bg-blueGray-200 relative pt-32">
-        <div
-          className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
-          style={{ transform: "translateZ(0)" }}
-        >
-          <svg
-            className="absolute bottom-0 overflow-hidden"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            version="1.1"
-            viewBox="0 0 2560 100"
-            x="0"
-            y="0"
-          >
-            <polygon
-              className="text-blueGray-200 fill-current"
-              points="2560 0 2560 100 0 100"
-            ></polygon>
-          </svg>
-        </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Email"
+                      />
+                    </div>
 
-        <div className="container mx-auto">
-          <div className="flex flex-wrap justify-center bg-white shadow-xl rounded-lg -mt-64 py-16 px-12 relative z-10">
-            <div className="w-full text-center lg:w-8/12">
-              <p className="text-4xl text-center">
-                <span role="img" aria-label="love">
-                  😍
-                </span>
-              </p>
-              <h3 className="font-semibold text-3xl">
-                Do you love this Starter Kit?
-              </h3>
-              <p className="text-blueGray-500 text-lg leading-relaxed mt-4 mb-4">
-                Cause if you do, it can be yours now. Hit the buttons below to
-                navigate to get the Free version for your next project. Build a
-                new web app or give an old project a new look!
-              </p>
-              <div className="sm:block flex flex-col mt-10">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-index"
-                  target="_blank"
-                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-2 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                >
-                  Get started
-                </a>
-                <a
-                  href="https://github.com/creativetimofficial/notus-react?ref=nr-index"
-                  target="_blank"
-                  className="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
-                >
-                  <i className="fab fa-github text-lg mr-1"></i>
-                  <span>Help With a Star</span>
-                </a>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="message"
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        rows="4"
+                        cols="80"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="Type a message..."
+                      />
+                    </div>
+                    <div className="text-center mt-6">
+                      <button
+                        className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                      >
+                        Send Message
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="text-center mt-16"></div>
             </div>
+          </div>
+
           </div>
         </div>
       </section>
+
+      <section className="relative block py-24 lg:pt-0 bg-blueGray-800">
+        Hi there
+        </section>
       <Footer />
     </>
   );
